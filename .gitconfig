@@ -1,0 +1,16 @@
+[user]
+	name = Sam McClenaghan
+	email = sam@aream.ca
+[init]
+  defaultBranch = main
+[push]
+  autoSetupRemote = true
+[diff]
+  algorithm = histogram
+[branch]
+  sort = committerdate
+[commit]
+  verbose = true
+[help]
+  autocorrect = prompt
+
