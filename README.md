@@ -21,4 +21,7 @@ Use GNU Stow to symlink the files to their respective locations:
 $ stow --dotfiles .
 ```
 
+3. Change .gitconfig.local
+Change the `user.name` and `user.email` information to your respective name and email
+
 Video showing GNU Stow in action: [https://www.youtube.com/watch?v=CFzD9SekOew](https://www.youtube.com/watch?v=CFzD9SekOew)
