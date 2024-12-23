@@ -1,9 +1,9 @@
-[user]
-	name = Sam McClenaghan
-	email = sam@aream.ca
+[core]
+  editor=nvim
 [init]
   defaultBranch = main
 [push]
+  default = simple
   autoSetupRemote = true
 [diff]
   algorithm = histogram
