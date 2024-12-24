@@ -1,6 +1,8 @@
 nmap j gj
 nmap k gk
 
+imap kj <Esc>l
+
 nmap <ESC> :nohl<CR>
 set clipboard=unnamed
 
@@ -22,7 +24,7 @@ nmap <C-o> :forward<CR>
 unmap <Space>
 
 exmap rename obcommand workspace:edit-file-title
-nmap <Space>r :rename
+nmap <Space>rn :rename
 
 exmap save obcommand editor:save-file
 nmap <Space>w :save<CR>
