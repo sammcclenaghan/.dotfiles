@@ -15,3 +15,5 @@
   autocorrect = prompt
 [include]
   path = ~/.gitconfig.local
+[alias]
+  ls = status

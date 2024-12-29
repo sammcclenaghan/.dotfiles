@@ -32,3 +32,11 @@ source <(fzf --zsh)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(zoxide init --cmd cd zsh)"
+
+# bun completions
+[ -s "/Users/samcclenaghan/.bun/_bun" ] && source "/Users/samcclenaghan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+eval "$(/opt/homebrew/bin/mise activate zsh)"
