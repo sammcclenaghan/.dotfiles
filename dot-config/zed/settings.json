@@ -7,6 +7,18 @@
     },
     "version": "2"
   },
+  "language_models": {
+    "ollama": {
+      "api_url": "http://192.168.0.225:11434",
+      "available_models": [
+        {
+          "name": "qwen2.5",
+          "display_name": "qwen 2.5 coder 32K",
+          "max_tokens": 32768
+        }
+      ]
+    }
+  },
   "languages": {
     "TypeScript": {
       "show_inline_completions": false
