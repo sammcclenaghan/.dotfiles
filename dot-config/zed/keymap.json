@@ -64,5 +64,11 @@
       "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
       "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
     }
+  },
+  {
+    "context": "Editor && inline_completion",
+    "bindings": {
+      "esc": "editor::Cancel"
+    }
   }
 ]

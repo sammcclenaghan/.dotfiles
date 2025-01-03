@@ -2,7 +2,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
+alias bmas='~/.config/scripts/bettermas.sh'
 # Make Antigen always available to zsh
 source /opt/homebrew/share/antigen/antigen.zsh
 
