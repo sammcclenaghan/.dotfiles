@@ -18,7 +18,7 @@ $ cd .dotfiles
 2. Symlink Dotfiles Using GNU Stow
 Use GNU Stow to symlink the files to their respective locations:
 ```
-$ stow --dotfiles .
+$ stow --dotfiles --adopt .
 ```
 
 3. Change .gitconfig.local
