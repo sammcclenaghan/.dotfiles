@@ -3,6 +3,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 alias bmas='~/.config/scripts/bettermas.sh'
+alias code='code-insiders'
 # Make Antigen always available to zsh
 source /opt/homebrew/share/antigen/antigen.zsh
 
@@ -36,7 +37,16 @@ eval "$(zoxide init --cmd cd zsh)"
 # bun completions
 [ -s "/Users/samcclenaghan/.bun/_bun" ] && source "/Users/samcclenaghan/.bun/_bun"
 
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-eval "$(/opt/homebrew/bin/mise activate zsh)"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# Added by Windsurf
+export PATH="/Users/sammcclenaghan/.codeium/windsurf/bin:$PATH"
+eval "$(~/.local/bin/mise activate)"

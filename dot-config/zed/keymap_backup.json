@@ -1,22 +1,6 @@
 // Zed keymap
 [
   {
-    "bindings": {
-      "cmd-p": [
-        "task::Spawn",
-        { "task_name": "file_finder", "reveal_target": "center" }
-      ],
-      "cmd-shift-f": [
-        "task::Spawn",
-        { "task_name": "fulltext_search", "reveal_target": "center" }
-      ],
-      "space f f": [
-        "task::Spawn",
-        { "task_name": "file_finder", "reveal_target": "center" }
-      ]
-    }
-  },
-  {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       "space t i": "editor::ToggleInlayHints",
@@ -44,7 +28,7 @@
       "g I": "editor::GoToImplementationSplit",
       "f w": "editor::FindAllReferences",
       "] d": "editor::GoToDiagnostic",
-      "[ d": "editor::GoToPreviousDiagnostic",
+      "[ d": "editor::GoToPrevDiagnostic",
       "space x x": "diagnostics::Deploy",
       "space /": "pane::DeploySearch",
       "space e": "pane::RevealInProjectPanel"
@@ -63,9 +47,7 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "ctrl-n": ["workspace::SendKeystrokes", "down"],
-      "ctrl-p": ["workspace::SendKeystrokes", "up"]
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
   {

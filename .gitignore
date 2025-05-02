@@ -1,0 +1,29 @@
+# Zed Editor
+dot-config/zed/conversations/
+dot-config/zed/.tmp/
+dot-config/zed/settings_backup.json
+dot-config/raycast/
+
+# GitHub Copilot
+dot-config/github-copilot/
+dot-config/github-copilot/apps.json
+
+# Environment specific
+.DS_Store
+*.log
+*.swp
+*.swo
+
+# Sensitive information
+.env
+.env.*
+*history*
+.ssh/
+.gnupg/
+*.pem
+*.key
+*.crt
+
+# Cache directories
+.cache/
+node_modules/
