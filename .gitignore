@@ -3,6 +3,8 @@ dot-config/zed/conversations/
 dot-config/zed/.tmp/
 dot-config/zed/settings_backup.json
 dot-config/raycast/
+dot-config/zed/development_credentials
+dot-config/zed/prompts/*
 
 # GitHub Copilot
 dot-config/github-copilot/

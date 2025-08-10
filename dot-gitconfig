@@ -16,4 +16,11 @@
 [include]
   path = ~/.gitconfig.local
 [alias]
+  recent = !git branch --sort=-committerdate | fzf --reverse --ansi |cut -f2 | xargs git switch
+  send = !git push origin "$(git symbolic-ref --short HEAD)"
   ls = status
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

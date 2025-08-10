@@ -1,30 +1,24 @@
 // Zed keymap
 [
   {
-    "bindings": {
-      "cmd-p": [
-        "task::Spawn",
-        { "task_name": "file_finder", "reveal_target": "center" }
-      ],
-      "cmd-shift-f": [
-        "task::Spawn",
-        { "task_name": "fulltext_search", "reveal_target": "center" }
-      ],
-      "space f f": [
-        "task::Spawn",
-        { "task_name": "file_finder", "reveal_target": "center" }
-      ]
-    }
-  },
-  {
-    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu && !terminal",
     "bindings": {
       "space t i": "editor::ToggleInlayHints",
       "space m p": "markdown::OpenPreview",
       "space m P": "markdown::OpenPreviewToTheSide",
       "space s w": "pane::DeploySearch",
-      "space a c": "assistant::ToggleFocus",
-      "space g f": "editor::OpenExcerpts"
+      "space g f": "editor::OpenExcerpts",
+      "space h a": "harpoon::Mark",
+      "space h": "harpoon::ShowPicker",
+      "space h 1": "harpoon::Jump1",
+      "space h 2": "harpoon::Jump2",
+      "space h 3": "harpoon::Jump3",
+      "space h 4": "harpoon::Jump4",
+      "space h 5": "harpoon::Jump5",
+      "space h 6": "harpoon::Jump6",
+      "space h 7": "harpoon::Jump7",
+      "space h 8": "harpoon::Jump8",
+      "space h 9": "harpoon::Jump9"
     }
   },
   {

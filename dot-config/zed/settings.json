@@ -1,98 +1,17 @@
 // Zed settings
 {
+  "agent": {
+    "default_profile": "write",
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
+    }
+  },
   "features": {
     "edit_prediction_provider": "zed"
   },
-  "assistant": {
-    "default_profile": "ask",
-    "always_allow_tool_actions": true,
-    "profiles": {
-      "ask": {
-        "name": "Ask",
-        "tools": {
-          "terminal": true,
-          "symbol_info": true,
-          "open": true,
-          "contents": true,
-          "diagnostics": true,
-          "fetch": true,
-          "list_directory": true,
-          "now": true,
-          "path_search": true,
-          "read_file": true,
-          "grep": true,
-          "thinking": true,
-          "web_search": true
-        },
-        "enable_all_context_servers": false,
-        "context_servers": {}
-      },
-      "testing-profile": {
-        "name": "testing profile",
-        "tools": {
-          "list_directory": true,
-          "find_replace_file": true,
-          "diagnostics": true,
-          "create_file": true,
-          "create_directory": true,
-          "copy_path": true,
-          "bash": true
-        },
-        "enable_all_context_servers": false,
-        "context_servers": {
-          "mcp-server-github": {
-            "tools": {
-              "create_pull_request": true,
-              "create_or_update_file": true
-            }
-          }
-        }
-      },
-      "testing": {
-        "name": "testing",
-        "tools": {},
-        "enable_all_context_servers": false,
-        "context_servers": {}
-      },
-      "write": {
-        "name": "Write",
-        "tools": {
-          "bash": true,
-          "batch_tool": true,
-          "code_symbols": true,
-          "copy_path": false,
-          "create_file": true,
-          "delete_path": false,
-          "diagnostics": true,
-          "find_replace_file": true,
-          "fetch": true,
-          "list_directory": false,
-          "move_path": false,
-          "now": true,
-          "path_search": true,
-          "read_file": true,
-          "regex_search": true,
-          "symbol_info": true,
-          "thinking": true
-        },
-        "enable_all_context_servers": true,
-        "context_servers": {
-          "mcp-server-github": {
-            "tools": {
-              "list_commits": true,
-              "push_files": true,
-              "create_or_update_file": true,
-              "add_issue_comment": false
-            }
-          }
-        }
-      }
-    },
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-3-5-sonnet"
-    },
-    "version": "2"
+  "file_finder": {
+    "modal_max_width": "small" // Horizontal size: small, medium, large, xlarge, full
   },
   "language_models": {
     "ollama": {
@@ -101,6 +20,17 @@
         {
           "name": "qwen2.5",
           "display_name": "qwen 2.5 coder 32K",
+          "max_tokens": 32768
+        }
+      ]
+    },
+    "open_router": {
+      "api_url": "https://openrouter.ai/api/v1",
+      "available_models": [
+        {
+          "name": "openrouter/horizon-beta",
+          "supports_tools": true,
+          "display_name": "Horizon Beta",
           "max_tokens": 32768
         }
       ]
@@ -115,10 +45,6 @@
   "buffer_font_size": 13,
   "buffer_font_family": "MesloLGS NF",
   "vim_mode": true,
-  "relative_line_numbers": true,
-  "tab_bar": {
-    "show": false
-  },
   "inlay_hints": {
     "enabled": true
   },
@@ -141,6 +67,9 @@
         "classAttributes": ["class", "className", "ngClass", "styles"]
       }
     }
+  },
+  "collaboration_panel": {
+    "dock": "right" // Where to dock: left, right
   },
   "file_types": {
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
@@ -172,9 +101,5 @@
   "telemetry": {
     "diagnostics": false,
     "metrics": false
-  },
-  "cmd-p": [
-    "task::Spawn",
-    { "task_name": "file_finder", "reveal_target": "center" }
-  ]
+  }
 }
