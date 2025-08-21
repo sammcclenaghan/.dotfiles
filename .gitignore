@@ -25,6 +25,7 @@ dot-config/github-copilot/apps.json
 *.pem
 *.key
 *.crt
+.gitconfig.local
 
 # Cache directories
 .cache/

@@ -7,18 +7,7 @@
       "space m p": "markdown::OpenPreview",
       "space m P": "markdown::OpenPreviewToTheSide",
       "space s w": "pane::DeploySearch",
-      "space g f": "editor::OpenExcerpts",
-      "space h a": "harpoon::Mark",
-      "space h": "harpoon::ShowPicker",
-      "space h 1": "harpoon::Jump1",
-      "space h 2": "harpoon::Jump2",
-      "space h 3": "harpoon::Jump3",
-      "space h 4": "harpoon::Jump4",
-      "space h 5": "harpoon::Jump5",
-      "space h 6": "harpoon::Jump6",
-      "space h 7": "harpoon::Jump7",
-      "space h 8": "harpoon::Jump8",
-      "space h 9": "harpoon::Jump9"
+      "space g f": "editor::OpenExcerpts"
     }
   },
   {

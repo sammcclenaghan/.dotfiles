@@ -12,7 +12,7 @@ Ensure you have the following installed on your system:
 1. Clone the repository
 Clone this repository into your `$HOME` directory:
 ```
-$ git clone git@github.com/sammcclenaghan/dotfiles.git ~/.dotfiles
+$ git clone git@github.com:sammcclenaghan/.dotfiles.git ~/.dotfiles
 $ cd .dotfiles
 ```
 2. Symlink Dotfiles Using GNU Stow

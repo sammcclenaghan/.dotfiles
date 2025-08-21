@@ -14,8 +14,6 @@ $cmd_duration
 
 [directory]
 style = "blue"
-truncation_length = 3
-truncate_to_repo = false
 
 [character]
 success_symbol = "[❯](purple)"
@@ -27,19 +25,15 @@ format = "[$branch]($style)"
 style = "bright-black"
 
 [git_status]
-format = "[[($untracked$modified)]($style) ($ahead_behind$stashed)]($style)"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
 style = "cyan"
-untracked = "[*](red)"
-modified = "[*](red)"
-staged = ""
-conflicted = ""
-renamed = ""
-deleted = ""
-ahead = "[⇡](yellow)"
-behind = "[⇣](red)"
-diverged = "[⇕](yellow)"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
 stashed = "≡"
-
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
