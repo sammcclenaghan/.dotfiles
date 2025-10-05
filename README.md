@@ -2,6 +2,15 @@
 This repo contains my dotfiles for my Mac environment.
 These are managed using GNU Stow to simplify the symlink-ing process.
 
+As part of these dotfiles, you will need the following:
+- Neovim
+- Zed
+- Starship
+- Tmux
+- Obsidian
+- Antigen
+- Mise
+
 ### Requirements
 Ensure you have the following installed on your system:
 - zsh: Set as your default shell
