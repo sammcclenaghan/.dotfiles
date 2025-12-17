@@ -1,3 +1,4 @@
+
 format = """
 $username\
 $hostname\
@@ -9,8 +10,7 @@ $python\
 $character"""
 
 right_format = """
-$cmd_duration
-"""
+$cmd_duration"""
 
 [directory]
 style = "blue"
