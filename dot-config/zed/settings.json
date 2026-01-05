@@ -13,7 +13,7 @@
   "file_finder": {
     "modal_max_width": "medium",
   },
-  "ui_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_family": "JetBrains Mono",
   "outline_panel": {
     "button": false,
   },
@@ -73,7 +73,7 @@
     "breakpoints": false,
     "runnables": true,
   },
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "hover_popover_delay": 300,
   "snippet_sort_order": "inline",
   "unnecessary_code_fade": 0.4000000059604645,
@@ -106,8 +106,8 @@
   "features": {
     "edit_prediction_provider": "zed",
   },
-  "buffer_font_family": "JetBrainsMono Nerd Font",
-  "theme": "Base16 Gruvbox dark, pale",
+  "buffer_font_family": "JetBrains Mono",
+  "theme": "Base16 Gruvbox dark, soft",
   "tab_size": 2,
   "format_on_save": "on",
   "ui_font_size": 14.0,
