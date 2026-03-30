@@ -7,8 +7,20 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "ssh_connections": [
+    {
+      "host": "linux.csc.uvic.ca",
+      "username": "sammcclenaghan",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/sammcclenaghan"],
+        },
+      ],
+    },
+  ],
   "edit_predictions": {
-    "mode": "eager",
+    "mode": "subtle",
   },
   "file_finder": {
     "modal_max_width": "medium",
@@ -97,9 +109,49 @@
   },
   "base_keymap": "VSCode",
   "agent": {
+    "default_profile": "write",
+    "profiles": {
+      "plan": {
+        "name": "Plan",
+        "tools": {
+          "diagnostics": true,
+          "fetch": true,
+          "find_path": true,
+          "grep": true,
+          "list_directory": true,
+          "now": true,
+          "open": true,
+          "read_file": true,
+          "terminal": true,
+          "web_search": true,
+          "create_directory": false
+        },
+        "enable_all_context_servers": false,
+        "context_servers": {}
+      },
+      "write": {
+        "name": "Write",
+        "tools": {},
+        "enable_all_context_servers": false,
+        "context_servers": {}
+      }
+    },
+    "always_allow_tool_actions": true,
+    "favorite_models": [
+      {
+        "provider": "copilot_chat",
+        "model": "gpt-5-mini",
+      },
+      {
+        "provider": "copilot_chat",
+        "model": "claude-opus-4.5",
+      },
+    ],
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4",
+      "effort": "medium",
+      "enable_thinking": true,
+      "provider": "zed.dev",
+      "model": "gpt-5.4",
     },
     "model_parameters": [],
   },
@@ -118,7 +170,7 @@
       "formatter": "language_server",
       "preferred_line_length": 120,
       "soft_wrap": "preferred_line_length",
-      "language_servers": ["ruby-lsp", "!solargraph", "rubocop", "sorbet"],
+      "language_servers": ["ruby-lsp", "!solargraph", "rubocop", "!sorbet"],
     },
     "TypeScript": {
       "language_servers": ["typescript-language-server", "!vtsls", "..."],
