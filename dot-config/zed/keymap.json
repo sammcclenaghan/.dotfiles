@@ -1,4 +1,3 @@
-// Zed keymap
 [
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu && !terminal",
@@ -12,9 +11,7 @@
   },
   {
     "context": "Editor && edit_prediction_conflict && showing_completions",
-    "bindings": {
-      "tab": "editor::AcceptEditPrediction",
-    },
+    "bindings": { "tab": "editor::AcceptEditPrediction" },
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
@@ -23,7 +20,6 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
-
       "space c a": "editor::ToggleCodeActions",
       "space .": "editor::ToggleCodeActions",
       "space r n": "editor::Rename",
@@ -39,12 +35,9 @@
       "space e": "pane::RevealInProjectPanel",
     },
   },
-  // Better escape
   {
     "context": "Editor && vim_mode == insert && !menu",
-    "bindings": {
-      "k j": "vim::NormalBefore",
-    },
+    "bindings": { "k j": "vim::NormalBefore" },
   },
   {
     "context": "Terminal",
@@ -74,24 +67,9 @@
   },
   {
     "context": "Editor && edit_prediction",
-    "bindings": {
-      "esc": "editor::Cancel",
-    },
+    "bindings": { "esc": "editor::Cancel" },
   },
   {
-    "bindings": {
-      "space t n": "editor::ToggleRelativeLineNumbers",
-    },
-  },
-  {
-    "context": "(Workspace && !Terminal)",
-    "bindings": {
-      "space shift-t": [
-        "task::Rerun",
-        {
-          "reevaluate_context": true,
-        },
-      ],
-    },
+    "bindings": { "space t n": "editor::ToggleRelativeLineNumbers" },
   },
 ]

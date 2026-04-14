@@ -17,6 +17,8 @@
   path = ~/.gitconfig.local
 [alias]
   recent = !git branch --sort=-committerdate | fzf --reverse --ansi |cut -f2 | xargs git switch
+  undo = reset --soft HEAD~1
+  fixup = "!f() { TARGET=$(git rev-parse $1); git commit --fixup=$TARGET ${@:2} && GIT_SEQUENCE_EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
   send = !git push origin "$(git symbolic-ref --short HEAD)"
   ls = status
 [filter "lfs"]

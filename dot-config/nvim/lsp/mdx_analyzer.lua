@@ -3,8 +3,6 @@
 ---
 --- `mdx-analyzer`, a language server for MDX
 
-local util = require 'lspconfig.util'
-
 ---@type vim.lsp.Config
 return {
   cmd = { 'mdx-language-server', '--stdio' },
@@ -12,11 +10,8 @@ return {
   root_markers = { 'package.json' },
   settings = {},
   init_options = {
-    typescript = {},
+    typescript = {
+      tsdk = vim.g.tsdk,
+    },
   },
-  before_init = function(_, config)
-    if config.init_options and config.init_options.typescript and not config.init_options.typescript.tsdk then
-      config.init_options.typescript.tsdk = util.get_typescript_server_path(config.root_dir)
-    end
-  end,
 }

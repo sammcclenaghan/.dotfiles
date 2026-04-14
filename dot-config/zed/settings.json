@@ -1,169 +1,102 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "ssh_connections": [
-    {
-      "host": "linux.csc.uvic.ca",
-      "username": "sammcclenaghan",
-      "args": [],
-      "projects": [
-        {
-          "paths": ["/home/sammcclenaghan"],
-        },
-      ],
-    },
-  ],
-  "edit_predictions": {
-    "mode": "subtle",
+  "which_key": {
+    "enabled": true,
   },
-  "file_finder": {
-    "modal_max_width": "medium",
+  "vim": {
+    "toggle_relative_line_numbers": true,
   },
+  "base_keymap": "VSCode",
+  "vim_mode": true,
+
+  "theme": "Base16 Gruvbox dark, soft",
+  "telemetry": { "diagnostics": false, "metrics": false },
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_size": 13.0,
   "ui_font_family": "JetBrains Mono",
-  "outline_panel": {
-    "button": false,
+  "ui_font_size": 14.0,
+
+  "tab_size": 2,
+  "relative_line_numbers": "enabled",
+  "soft_wrap": "none",
+  "format_on_save": "on",
+  "current_line_highlight": "gutter",
+  "vertical_scroll_margin": 8,
+  "cursor_blink": false,
+  "hover_popover_delay": 300,
+  "unnecessary_code_fade": 0.4,
+  "show_wrap_guides": false,
+
+  "tab_bar": { "show": false },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": false,
   },
-  "active_pane_modifiers": {
-    "border_size": 0.0,
-  },
-  "zoomed_padding": true,
-  "use_system_window_tabs": false,
-  "bottom_dock_layout": "contained",
-  "tab_bar": {
-    "show_nav_history_buttons": true,
-    "show": false,
+  "scrollbar": { "show": "never" },
+  "minimap": { "show": "never" },
+  "status_bar": {
+    "cursor_position_button": false,
+    "active_language_button": false,
+    "line_endings_button": false,
   },
   "title_bar": {
     "show_menus": false,
-    "show_sign_in": false,
     "show_user_picture": false,
-    "show_onboarding_banner": true,
+    "show_user_menu": false,
+    "show_onboarding_banner": false,
+    "show_project_items": true,
+    "show_branch_name": true,
   },
-  "terminal": {
-    "button": false,
-  },
-  "search": {
-    "button": false,
-  },
-  "debugger": {
-    "button": false,
-  },
-  "status_bar": {
-    "cursor_position_button": false,
-    "active_language_button": true,
-  },
+  "active_pane_modifiers": { "border_size": 0.0 },
+  "use_system_window_tabs": false,
+  "bottom_dock_layout": "contained",
+
+  // ─── Gutter — line numbers + diagnostics only ────────
+  "gutter": { "folds": false, "runnables": false, "breakpoints": false },
+  "git": { "git_gutter": "hide" },
+  "diagnostics": { "inline": { "enabled": true, "padding": 15 } },
+
+  // ─── Panels — all buttons hidden, use keymaps ────────
   "project_panel": {
-    "indent_size": 15.0,
+    "button": false,
+    "indent_size": 15,
     "entry_spacing": "standard",
-    "button": true,
+    "auto_fold_dirs": true,
+    "indent_guides": { "show": "never" },
+    "scrollbar": { "show": "never" },
   },
-  "diagnostics": {
-    "inline": {
-      "padding": 15,
-      "enabled": true,
-    },
-  },
-  "soft_wrap": "none",
-  "toolbar": {
-    "selections_menu": true,
-    "quick_actions": false,
-  },
-  "scrollbar": {
-    "axes": {
-      "vertical": false,
-    },
-    "show": "never",
-  },
-  "gutter": {
-    "min_line_number_digits": 5,
-    "breakpoints": false,
-    "runnables": true,
-  },
-  "relative_line_numbers": "enabled",
-  "hover_popover_delay": 300,
-  "snippet_sort_order": "inline",
-  "unnecessary_code_fade": 0.4000000059604645,
-  "context_servers": {},
+  "outline_panel": { "button": false },
+  "terminal": { "button": false },
+  "search": { "button": false },
+  "debugger": { "button": false },
+  "file_finder": { "modal_max_width": "medium" },
+
+  // ─── Inlay Hints ─────────────────────────────────────
   "inlay_hints": {
     "enabled": true,
-    "show_value_hints": true,
     "show_type_hints": true,
     "show_parameter_hints": true,
     "show_other_hints": true,
     "show_background": true,
     "edit_debounce_ms": 700,
     "scroll_debounce_ms": 50,
-    "toggle_on_modifiers_press": {
-      "control": false,
-      "alt": false,
-      "shift": false,
-      "platform": false,
-      "function": false,
-    },
   },
-  "base_keymap": "VSCode",
+
+  // ─── Edit Predictions ────────────────────────────────
+  "edit_predictions": { "provider": "zed", "mode": "subtle" },
+
+  // ─── Agent ────────────────────────────────────────────
   "agent": {
-    "default_profile": "write",
-    "profiles": {
-      "plan": {
-        "name": "Plan",
-        "tools": {
-          "diagnostics": true,
-          "fetch": true,
-          "find_path": true,
-          "grep": true,
-          "list_directory": true,
-          "now": true,
-          "open": true,
-          "read_file": true,
-          "terminal": true,
-          "web_search": true,
-          "create_directory": false
-        },
-        "enable_all_context_servers": false,
-        "context_servers": {}
-      },
-      "write": {
-        "name": "Write",
-        "tools": {},
-        "enable_all_context_servers": false,
-        "context_servers": {}
-      }
-    },
-    "always_allow_tool_actions": true,
-    "favorite_models": [
-      {
-        "provider": "copilot_chat",
-        "model": "gpt-5-mini",
-      },
-      {
-        "provider": "copilot_chat",
-        "model": "claude-opus-4.5",
-      },
-    ],
+    "tool_permissions": { "default": "allow" },
     "default_model": {
-      "effort": "medium",
-      "enable_thinking": true,
       "provider": "zed.dev",
       "model": "gpt-5.4",
+      "effort": "medium",
+      "enable_thinking": true,
     },
-    "model_parameters": [],
   },
-  "features": {
-    "edit_prediction_provider": "zed",
-  },
-  "buffer_font_family": "JetBrains Mono",
-  "theme": "Base16 Gruvbox dark, soft",
-  "tab_size": 2,
-  "format_on_save": "on",
-  "ui_font_size": 14.0,
-  "buffer_font_size": 13.0,
+
+  // ─── Languages ────────────────────────────────────────
   "languages": {
     "Ruby": {
       "tab_size": 2,
@@ -173,7 +106,7 @@
       "language_servers": ["ruby-lsp", "!solargraph", "rubocop", "!sorbet"],
     },
     "TypeScript": {
-      "language_servers": ["typescript-language-server", "!vtsls", "..."],
+      "language_servers": ["typescript-language-server", "!vtsls"],
       "formatter": "prettier",
       "code_actions_on_format": {
         "source.organizeImports": true,
@@ -190,6 +123,8 @@
       ],
     },
   },
+
+  // ─── LSP ──────────────────────────────────────────────
   "lsp": {
     "typescript-language-server": {
       "initialization_options": {
@@ -203,9 +138,7 @@
           "importModuleSpecifierPreference": "shortest",
           "quotePreference": "single",
         },
-        "tsserver": {
-          "maxTsServerMemory": 8192,
-        },
+        "tsserver": { "maxTsServerMemory": 8192 },
       },
     },
     "ruby-lsp": {
@@ -218,22 +151,19 @@
         },
         "formatter": "rubocop",
         "featuresConfiguration": {
-          "inlayHint": {
-            "enableAll": false,
-          },
+          "inlayHint": { "enableAll": false },
           "debugging": {
             "enabled": true,
             "attachMode": "remote",
             "remotePort": 38698,
           },
         },
-        "rubyVersionManager": {
-          "identifier": "auto",
-        },
+        "rubyVersionManager": { "identifier": "auto" },
       },
     },
   },
-  "vim_mode": true,
+
+  // ─── File Scan Exclusions ─────────────────────────────
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
@@ -243,7 +173,6 @@
     "**/Thumbs.db",
     "**/.classpath",
     "**/.settings",
-    // above is default from Zed
     "**/out",
     "**/dist",
     "**/.husky",
@@ -257,8 +186,4 @@
     "**/report",
     "**/node_modules",
   ],
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false,
-  },
 }
