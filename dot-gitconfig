@@ -21,6 +21,8 @@
   fixup = "!f() { TARGET=$(git rev-parse $1); git commit --fixup=$TARGET ${@:2} && GIT_SEQUENCE_EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
   send = !git push origin "$(git symbolic-ref --short HEAD)"
   ls = status
+[rerere]
+  enabled = true
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
