@@ -1,16 +1,16 @@
 {
   // ─── Core ─────────────────────────────────────────────
   "icon_theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "Zed (Default)",
     "dark": "Zed (Default)"
   },
   "base_keymap": "VSCode",
   "vim_mode": true,
   "theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "One Light",
-    "dark": "Base16 Gruvbox dark, hard"
+    "dark": "Base16 Gruvbox dark, medium"
   },
   "telemetry": { "diagnostics": false, "metrics": false },
 
