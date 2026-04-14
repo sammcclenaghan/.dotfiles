@@ -1,0 +1,26 @@
+[
+  {
+    "label": "run: current file",
+    "command": "$ZED_FILE",
+    "use_new_terminal": false,
+    "reveal": "always"
+  },
+  {
+    "label": "test: current file",
+    "command": "if [[ \"$ZED_FILE\" == *.test.* ]] || [[ \"$ZED_FILE\" == *_test.* ]] || [[ \"$ZED_FILE\" == *_spec.rb ]]; then file=\"$ZED_FILE\"; else file=$(echo \"$ZED_FILE\" | sed 's/\\.\\([^.]*\\)$/.test.\\1/'); fi; if [[ \"$file\" == *.rb ]]; then bundle exec rspec \"$file\"; elif [[ \"$file\" == *.ts ]] || [[ \"$file\" == *.tsx ]]; then npx vitest run \"$file\"; fi",
+    "use_new_terminal": false,
+    "reveal": "always"
+  },
+  {
+    "label": "test: nearest",
+    "command": "if [[ \"$ZED_FILE\" == *.rb ]]; then bundle exec rspec \"$ZED_FILE:$ZED_ROW\"; elif [[ \"$ZED_FILE\" == *.ts ]] || [[ \"$ZED_FILE\" == *.tsx ]]; then npx vitest run \"$ZED_FILE\" -t \"$ZED_SYMBOL\"; fi",
+    "use_new_terminal": false,
+    "reveal": "always"
+  },
+  {
+    "label": "git: blame current file",
+    "command": "git log --oneline --follow -20 -- \"$ZED_FILE\"",
+    "use_new_terminal": false,
+    "reveal": "always"
+  }
+]
