@@ -28,7 +28,7 @@
       "g r": "editor::FindAllReferences",
       "g i": "editor::GoToImplementation",
       "g I": "editor::GoToImplementationSplit",
-      "K": "editor::Hover",
+      "K": "editor::GoToDefinition",
       "space c a": "editor::ToggleCodeActions",
       "space .": "editor::ToggleCodeActions",
       "space r n": "editor::Rename",

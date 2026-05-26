@@ -1,36 +1,10 @@
-local function resolve_tsdk()
-  local bufname = vim.api.nvim_buf_get_name(0)
-  local start = bufname ~= '' and vim.fs.dirname(bufname) or vim.loop.cwd()
-
-  local local_ts = vim.fs.find('node_modules/typescript/lib', {
-    path = start,
-    upward = true,
-    type = 'directory',
-    stop = vim.loop.os_homedir(),
-  })[1]
-
-  if local_ts then
-    return local_ts
-  end
-
-  local npm_root = vim.fn.system({ 'npm', 'root', '-g' })
-  if vim.v.shell_error == 0 then
-    local global_ts = vim.fs.joinpath(vim.trim(npm_root), 'typescript', 'lib')
-    if vim.fn.isdirectory(global_ts) == 1 then
-      return global_ts
-    end
-  end
-end
-
-vim.g.tsdk = resolve_tsdk()
-
 -- mason: install LSP servers via :Mason
 vim.pack.add({ "https://github.com/mason-org/mason.nvim" })
 vim.pack.add({ "https://github.com/mason-org/mason-lspconfig.nvim" })
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "ruby_lsp", "gopls" },
+  ensure_installed = { "lua_ls", "ruby_lsp", "gopls", "ts_ls" },
   automatic_enable = true,
 })
 

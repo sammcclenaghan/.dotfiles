@@ -1,18 +1,30 @@
 {
   // ─── Core ─────────────────────────────────────────────
+  "diff_view_style": "unified",
+  "cli_default_open_behavior": "existing_window",
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry",
+    },
+    "codex-acp": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
   "icon_theme": {
     "mode": "dark",
     "light": "Zed (Default)",
-    "dark": "Zed (Default)"
+    "dark": "Zed (Default)",
   },
   "base_keymap": "VSCode",
   "vim_mode": true,
-  "theme": {
-    "mode": "dark",
-    "light": "One Light",
-    "dark": "Base16 Gruvbox dark, medium"
-  },
-  "telemetry": { "diagnostics": false, "metrics": false },
+  "theme": "Base16 Gruvbox Material Dark, Medium",
+  "telemetry": { "diagnostics": true, "metrics": true },
 
   // ─── Font ─────────────────────────────────────────────
   "buffer_font_family": "JetBrains Mono",
@@ -40,13 +52,17 @@
 
   // ─── Chrome ───────────────────────────────────────────
   "tab_bar": { "show": false },
-  "toolbar": { "breadcrumbs": false, "quick_actions": false, "selections_menu": false },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": false,
+    "selections_menu": false,
+  },
   "scrollbar": { "show": "never" },
   "minimap": { "show": "never" },
   "indent_guides": { "enabled": false },
   "active_pane_modifiers": { "border_size": 0.0 },
   "use_system_window_tabs": false,
-  "bottom_dock_layout": "contained",
+  "bottom_dock_layout": "full",
   "title_bar": {
     "show_menus": false,
     "show_sign_in": false,
@@ -101,8 +117,8 @@
     "tool_permissions": { "default": "allow" },
     "default_model": {
       "provider": "zed.dev",
-      "model": "gpt-5.4",
-      "effort": "medium",
+      "model": "claude-sonnet-4-6",
+      "effort": "high",
       "enable_thinking": true,
     },
   },
@@ -127,7 +143,11 @@
     "TSX": {
       "tab_size": 2,
       "formatter": "prettier",
-      "language_servers": ["typescript-language-server", "eslint", "tailwindcss-language-server"],
+      "language_servers": [
+        "typescript-language-server",
+        "eslint",
+        "tailwindcss-language-server",
+      ],
     },
   },
 
@@ -148,7 +168,16 @@
         "tsserver": { "maxTsServerMemory": 8192 },
       },
     },
+    "rubocop": {
+      "binary": {
+        "path": "/Users/sammcclenaghan/.local/share/mise/shims/rubocop",
+        "arguments": ["--lsp"],
+      },
+    },
     "ruby-lsp": {
+      "binary": {
+        "path": "/Users/sammcclenaghan/.local/share/mise/shims/ruby-lsp",
+      },
       "initialization_options": {
         "enabledFeatures": {
           "diagnostics": true,
@@ -159,7 +188,11 @@
         "formatter": "rubocop",
         "featuresConfiguration": {
           "inlayHint": { "enableAll": false },
-          "debugging": { "enabled": true, "attachMode": "remote", "remotePort": 38698 },
+          "debugging": {
+            "enabled": true,
+            "attachMode": "remote",
+            "remotePort": 38698,
+          },
         },
         "rubyVersionManager": { "identifier": "auto" },
       },
@@ -168,11 +201,25 @@
 
   // ─── File Scan Exclusions ─────────────────────────────
   "file_scan_exclusions": [
-    "**/.git", "**/.svn", "**/.hg", "**/CVS",
-    "**/.DS_Store", "**/Thumbs.db", "**/.classpath", "**/.settings",
-    "**/out", "**/dist", "**/.husky", "**/.turbo",
-    "**/.vscode-test", "**/.vscode", "**/.next",
-    "**/.storybook", "**/.tap", "**/.nyc_output",
-    "**/report", "**/node_modules",
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/out",
+    "**/dist",
+    "**/.husky",
+    "**/.turbo",
+    "**/.vscode-test",
+    "**/.vscode",
+    "**/.next",
+    "**/.storybook",
+    "**/.tap",
+    "**/.nyc_output",
+    "**/report",
+    "**/node_modules",
   ],
 }

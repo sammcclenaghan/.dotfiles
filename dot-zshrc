@@ -3,11 +3,11 @@
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 
-export CLICOLOR=1
+alias ls="ls -G"
 
-# Load and initialise completion system
-autoload -Uz compinit
-compinit
+eval "$(/Users/sammcclenaghan/.local/bin/mise activate zsh)"
+eval "$(starship init zsh)"
+export BROWSER_PATH=/Applications/Helium.app/Contents/MacOS/Helium
 
 # bun completions
 [ -s "/Users/sammcclenaghan/.bun/_bun" ] && source "/Users/sammcclenaghan/.bun/_bun"
@@ -17,9 +17,3 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
-eval "$(~/.local/bin/mise activate)"
-
-# Added by Antigravity
-export PATH="/Users/sammcclenaghan/.antigravity/antigravity/bin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
