@@ -1,34 +1,97 @@
 [
-  // ─── Normal mode ──────────────────────────────────────
+  {
+    "bindings": {
+      // Every mode chord starts with the same normalizer:
+      //   CloseAllDocks, ToggleLeftDock, CloseAllDocks.
+      // CloseAllDocks doesn't clear zoom state, so a previously zoomed agent
+      // panel keeps rendering as an occluding overlay (workspace.zoomed goes
+      // stale). ToggleLeftDock on a just-closed dock always OPENS it, and
+      // that reveal path dismisses any zoomed overlay and unzooms all center
+      // panes. The second CloseAllDocks returns to a blank slate. All three
+      // run synchronously before the next frame, so nothing flickers. Every
+      // chord then SETS state instead of toggling it (i3-style).
+
+      // CODE — full-width editor + project panel
+      "ctrl-!": [
+        "action::Sequence",
+        [
+          "workspace::CloseAllDocks",
+          "workspace::ToggleLeftDock",
+          "workspace::CloseAllDocks",
+          "multi_workspace::CloseWorkspaceSidebar",
+          "project_panel::ToggleFocus",
+        ],
+      ],
+      // AGENT — workspace sidebar + agent panel, focus in the message
+      // editor. No zoom: panel zoom state persists invisibly across dock
+      // close/open, so a zoomed agent mode can't be made deterministic from
+      // config. Widen via agent.default_width instead; shift-escape still
+      // zooms manually and any mode chord recovers from it.
+      "ctrl-@": [
+        "action::Sequence",
+        [
+          "workspace::CloseAllDocks",
+          "workspace::ToggleLeftDock",
+          "workspace::CloseAllDocks",
+          "multi_workspace::CloseWorkspaceSidebar",
+          "multi_workspace::ToggleWorkspaceSidebar",
+          "agent::FocusAgent",
+        ],
+      ],
+      // REVIEW — git panel + project diff of the working tree;
+      // works for any agent, including ACP agents that apply edits
+      // themselves. Git panel opens first (deterministic from the closed
+      // state), then the diff takes the center and keeps focus.
+      // (The agent-diff review lives on "space a d" if keep/reject is
+      // needed for action-log-tracked agents.)
+      "ctrl-#": [
+        "action::Sequence",
+        [
+          "workspace::CloseAllDocks",
+          "workspace::ToggleLeftDock",
+          "workspace::CloseAllDocks",
+          "multi_workspace::CloseWorkspaceSidebar",
+          "git_panel::ToggleFocus",
+          "git::Diff",
+        ],
+      ],
+      // Conductor-style "new stream of work": open the new-thread menu, whose
+      // targets include creating the thread in a fresh git worktree.
+      "cmd-shift-n": "agent::ToggleNewThreadMenu",
+    },
+  },
+
+  {
+    "context": "Editor && edit_prediction && edit_prediction_mode == eager && showing_completions",
+    "bindings": {
+      "tab": "editor::AcceptEditPrediction",
+    },
+  },
+
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
-      // pane navigation
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
 
-      // buffer navigation
-      "shift-h": "pane::ActivatePrevItem",
+      "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
 
-      // search
       "space space": "file_finder::Toggle",
       "space s f": "file_finder::Toggle",
       "space s g": "pane::DeploySearch",
       "space /": "buffer_search::Deploy",
 
-      // file tree
       "space e": "pane::RevealInProjectPanel",
 
       // lsp
+      "K": "editor::Hover",
       "g d": "editor::GoToDefinition",
       "g D": "editor::GoToDefinitionSplit",
       "g r": "editor::FindAllReferences",
       "g i": "editor::GoToImplementation",
-      "g I": "editor::GoToImplementationSplit",
-      "K": "editor::GoToDefinition",
       "space c a": "editor::ToggleCodeActions",
       "space .": "editor::ToggleCodeActions",
       "space r n": "editor::Rename",
@@ -41,34 +104,79 @@
 
       // git hunks
       "] c": "editor::GoToHunk",
-      "[ c": "editor::GoToPrevHunk",
+      "[ c": "editor::GoToPreviousHunk",
+
+      // worktree navigation
+      "] w": "multi_workspace::NextProject",
+      "[ w": "multi_workspace::PreviousProject",
+      "space g w": "git::Worktree",
+      // instant isolated worktree from current HEAD (detached), switches
+      // the workspace to it — pick/create a branch afterwards if it sticks
+      "space g W": [
+        "git::CreateWorktree",
+        {
+          "worktree_name": null,
+          "branch_target": { "kind": "current_branch" },
+        },
+      ],
+
+      // centered scrolling and search (nvim: <C-d>zz, nzzzv)
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+      "n": ["workspace::SendKeystrokes", "n z z"],
+      "shift-n": ["workspace::SendKeystrokes", "shift-n z z"],
 
       // toggles
       "space t i": "editor::ToggleInlayHints",
-      "space t n": "editor::ToggleRelativeLineNumbers",
+      "space t l": "editor::ToggleRelativeLineNumbers",
+      "space t t": "theme::ToggleMode",
       "space z": "workspace::ToggleZoom",
+
+      // tasks
+      "space t s": "task::Spawn",
+      "space t r": "task::Rerun",
+      "space t n": "editor::SpawnNearestTask",
 
       // splits
       "\\": ["pane::SplitRight", {}],
       "-": ["pane::SplitDown", {}],
 
-      // buffer management
+      // buffers and panels
       "space b": "tab_switcher::Toggle",
       "space p": "command_palette::Toggle",
       "space o": "outline::Toggle",
       "space q": "pane::CloseActiveItem",
       "space w": "workspace::Save",
       "space g g": "git_panel::ToggleFocus",
+      "space g d": "git::Diff",
+      "space g r": "git::ReviewDiff",
+
+      // agent namespace
+      "space a a": "agent::ToggleFocus",
+      "space a n": "agent::ToggleNewThreadMenu",
+      "space a d": "agent::OpenAgentDiff",
+      "space a e": "multi_workspace::ToggleWorkspaceSidebar",
+      "space a f": "agent::Follow",
+      "space a m": "agent::ToggleModelSelector",
+      "] a": "multi_workspace::NextThread",
+      "[ a": "multi_workspace::PreviousThread",
     },
   },
 
-  // ─── Normal + Visual ──────────────────────────────────
   {
-    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu && !terminal",
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
+      // Unbind bare space (vim "move right") so the space prefix never times
+      // out: GPUI flushes pending keys after 1s only when the prefix itself
+      // has a binding, and that flush is what killed the which-key popup.
+      "space": null,
+
       // move lines
       "alt-j": "editor::MoveLineDown",
       "alt-k": "editor::MoveLineUp",
+
+      // delete without yanking (nvim: <leader>d -> "_d)
+      "space d": ["workspace::SendKeystrokes", "\" _ d"],
 
       "space m p": "markdown::OpenPreview",
       "space m P": "markdown::OpenPreviewToTheSide",
@@ -76,20 +184,18 @@
     },
   },
 
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      ">": ["workspace::SendKeystrokes", "> g v"],
+      "<": ["workspace::SendKeystrokes", "< g v"],
+    },
+  },
+
   // ─── Insert mode ──────────────────────────────────────
   {
     "context": "Editor && vim_mode == insert && !menu",
     "bindings": { "k j": "vim::NormalBefore" },
-  },
-
-  // ─── Edit predictions ─────────────────────────────────
-  {
-    "context": "Editor && edit_prediction_conflict && showing_completions",
-    "bindings": { "tab": "editor::AcceptEditPrediction" },
-  },
-  {
-    "context": "Editor && edit_prediction",
-    "bindings": { "esc": "editor::Cancel" },
   },
 
   // ─── Terminal ─────────────────────────────────────────
@@ -103,7 +209,6 @@
     },
   },
 
-  // ─── Project panel — vim-like ─────────────────────────
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
@@ -118,6 +223,4 @@
       "ctrl-l": "workspace::ActivatePaneRight",
     },
   },
-
-
 ]

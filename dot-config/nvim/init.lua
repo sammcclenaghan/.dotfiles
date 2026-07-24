@@ -1,55 +1,67 @@
----@diagnostic disable: missing-fields
+require("vim._core.ui2").enable({})
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
-vim.opt.number = true
+vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.opt.clipboard = "unnamedplus"
-vim.opt.undofile = true
-vim.opt.signcolumn = "yes"
-vim.opt.inccommand = "split"
-vim.opt.cursorline = true
-vim.opt.breakindent = true
-vim.opt.wrap = true
+
 vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.opt.textwidth = 80
-vim.opt.scrolloff = 8
-vim.opt.colorcolumn = "80"
-vim.opt.updatetime = 50
 
-vim.diagnostic.config({
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = " ",
-      [vim.diagnostic.severity.WARN] = " ",
-      [vim.diagnostic.severity.INFO] = " ",
-      [vim.diagnostic.severity.HINT] = " ",
-    },
-  },
-  virtual_text = { current_line = true },
-  float = { border = "rounded", source = true },
+
+vim.opt.wrap = true
+vim.opt.smartindent = true
+vim.opt.inccommand = "split"
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.opt.undofile = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+vim.opt.breakindent = true
+
+vim.opt.clipboard = "unnamedplus"
+vim.opt.cursorline = true
+
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.termguicolors = true
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking text",
+  callback = function()
+    vim.hl.on_yank()
+  end,
 })
 
+
+vim.keymap.set({"n", "v"}, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- centered jumps
+vim.keymap.set("v", "<", "<gv", { desc = "Unindent and keep selection" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent and keep selection" })
+
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "J", "mzJ`z")
 
--- undotree
-vim.pack.add({ "https://github.com/mbbill/undotree" })
+vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart Neovim"})
+
+vim.pack.add({
+  "https://github.com/mbbill/undotree",
+  "https://github.com/ellisonleao/gruvbox.nvim",
+})
+
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 
--- colorscheme
-vim.pack.add({ "https://github.com/ellisonleao/gruvbox.nvim" })
-vim.cmd.colorscheme("gruvbox")
-
+vim.cmd.colorscheme("ember") -- variants: vim.g.ember_variant = "daily" | "weekend"
 -- treesitter
 vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" }, { confirm = false })
 vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" })

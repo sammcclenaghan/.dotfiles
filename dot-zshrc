@@ -17,3 +17,17 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(zoxide init zsh)"
+
+# Pi
+export PATH="/Users/sammcclenaghan/.local/share/mise/installs/node/25.9.0/bin:$PATH"
+
+# nub
+export PATH="$HOME/.nub/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/sammcclenaghan/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
