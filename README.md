@@ -17,6 +17,19 @@ Ensure you have the following installed on your system:
 * [Obsidian](https://help.obsidian.md/): For note management
 * [Antigen](https://github.com/zsh-users/antigen): For zsh plugin management
 * [Mise](https://mise.jdx.dev/): For managing runtimes
+* [Pi](https://github.com/earendil-works/pi): Coding agent (config in `dot-pi/`)
+
+### Layout
+
+Everything uses stow's `--dotfiles` convention: `dot-foo` stows to `~/.foo`.
+
+* `dot-config/` → `~/.config/` (nvim, zed, gh, mise, starship, scripts)
+* `dot-pi/` → `~/.pi/` (agent settings, keybindings, themes, prompts; state and secrets stay unmanaged)
+* `dot-zshrc`, `dot-gitconfig`, `dot-tmux.conf`, `dot-obsidian.vimrc` → home directory
+
+The Ember theme family (Zed + Neovim + pi) is generated from a single palette in
+`dot-config/scripts/gen_ember.py` — edit that and rerun it rather than hand-editing
+the theme files.
 
 ### Installation
 

@@ -1,0 +1,35 @@
+{
+  "defaultModel": "gpt-5.6-terra",
+  "defaultProvider": "openai-codex",
+  "defaultThinkingLevel": "medium",
+  "externalEditor": "zed --wait",
+  "enabledModels": [
+    "github-copilot/claude-haiku-4.5",
+    "github-copilot/claude-opus-4.8",
+    "github-copilot/claude-sonnet-4.6",
+    "github-copilot/gemini-3.5-flash",
+    "github-copilot/gpt-5-mini",
+    "openai-codex/gpt-5.5",
+    "ollama/gemma4:12b",
+    "ollama/qwen3.5:9b-code",
+    "ollama/qwen3.5:9b-text",
+    "opencode-go/deepseek-v4-flash",
+    "opencode-go/deepseek-v4-pro",
+    "opencode-go/glm-5.1",
+    "opencode-go/glm-5.2",
+    "opencode-go/kimi-k2.7-code",
+    "opencode-go/minimax-m3",
+    "opencode-go/qwen3.7-plus",
+    "opencode-go/qwen3.7-max",
+    "opencode-go/kimi-k2.6",
+    "openai-codex/gpt-5.6-luna",
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-terra"
+  ],
+  "lastChangelogVersion": "0.82.1",
+  "quietStartup": true,
+  "packages": [
+    "npm:spotme"
+  ],
+  "theme": "ember-weekend-dark"
+}

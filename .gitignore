@@ -10,6 +10,17 @@ dot-config/zed/prompts/*
 dot-config/github-copilot/
 dot-config/github-copilot/apps.json
 
+# Pi (only config is tracked; state/secrets never)
+dot-pi/agent/auth.json
+dot-pi/agent/sessions/
+dot-pi/agent/node_modules/
+dot-pi/agent/npm/
+dot-pi/agent/bin/
+dot-pi/agent/extensions/
+dot-pi/agent/models-store.json
+dot-pi/agent/trust.json
+dot-pi/agent/skills.bak/
+
 # Environment specific
 .DS_Store
 *.log
