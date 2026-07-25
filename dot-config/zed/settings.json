@@ -56,7 +56,7 @@
   "theme": {
     "mode": "dark",
     "light": "Ember Daily Light",
-    "dark": "Ember Daily Dark",
+    "dark": "Ember Weekend Dark",
   },
   "buffer_font_family": "JetBrains Mono",
   "buffer_font_size": 13,
@@ -141,7 +141,7 @@
       "provider": "openai-subscribed",
       "model": "gpt-5.6-sol",
       "enable_thinking": true,
-      "effort": "xhigh",
+      "effort": "low",
     },
     "subagent_model": {
       "provider": "opencode",

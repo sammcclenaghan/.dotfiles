@@ -296,3 +296,118 @@ with open(out, "w") as f:
 print("wrote", out)
 json.load(open(out))
 print("valid json,", len(family["themes"]), "themes")
+
+
+# ---- pi (coding agent TUI) themes: ~/.pi/agent/themes/ ----
+
+def pi_theme(name, p, ladder, vesper_grammar=False):
+    accent = p["fn"] if vesper_grammar else p["blue"]
+    data = p["fn"] if vesper_grammar else p["blue"]  # constants/symbols family
+    vars = {
+        "bg": ladder["bg"],
+        "panel": ladder["panel"],
+        "panelAlt": ladder["panelAlt"],
+        "selected": ladder["selected"],
+        "border": ladder["border"],
+        "accent": accent,
+        "kw": p["kw"],
+        "fn": p["fn"],
+        "str": p["string"],
+        "num": p["num"],
+        "typ": p["typ"],
+        "data": data,
+        "green": p["green"],
+        "red": p["red"],
+        "yellow": p["yellow"],
+        "orange": p["orange"],
+        "text": p["fg"],
+        "muted": p["muted"],
+        "dim": p["comment"],
+        "toolSuccessBg": ladder["toolSuccessBg"],
+        "toolErrorBg": ladder["toolErrorBg"],
+    }
+    colors = {
+        "accent": "accent",
+        "border": "border",
+        "borderAccent": "accent",
+        "borderMuted": "dim",
+        "success": "green",
+        "error": "red",
+        "warning": "yellow",
+        "muted": "muted",
+        "dim": "dim",
+        "text": "",
+        "thinkingText": "muted",
+        "selectedBg": "selected",
+        "userMessageBg": "panel",
+        "userMessageText": "",
+        "customMessageBg": "panelAlt",
+        "customMessageText": "",
+        "customMessageLabel": "str",
+        "toolPendingBg": "panelAlt",
+        "toolSuccessBg": "toolSuccessBg",
+        "toolErrorBg": "toolErrorBg",
+        "toolTitle": "accent",
+        "toolOutput": "muted",
+        "mdHeading": "typ",
+        "mdLink": "data",
+        "mdLinkUrl": "muted",
+        "mdCode": "str",
+        "mdCodeBlock": "muted",
+        "mdCodeBlockBorder": "border",
+        "mdQuote": "muted",
+        "mdQuoteBorder": "border",
+        "mdHr": "border",
+        "mdListBullet": "orange",
+        "toolDiffAdded": "green",
+        "toolDiffRemoved": "red",
+        "toolDiffContext": "muted",
+        "syntaxComment": "dim",
+        "syntaxKeyword": "kw",
+        "syntaxFunction": "fn",
+        "syntaxVariable": "text",
+        "syntaxString": "str",
+        "syntaxNumber": "num",
+        "syntaxType": "typ",
+        "syntaxOperator": "muted",
+        "syntaxPunctuation": "muted",
+        "thinkingOff": "dim",
+        "thinkingMinimal": "border",
+        "thinkingLow": "accent",
+        "thinkingMedium": "str",
+        "thinkingHigh": "num",
+        "thinkingXhigh": "red",
+        "bashMode": "green",
+    }
+    return {
+        "$schema": "https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/src/modes/interactive/theme/theme-schema.json",
+        "name": name,
+        "vars": vars,
+        "colors": colors,
+        "export": {
+            "pageBg": ladder["bg"],
+            "cardBg": ladder["panel"],
+            "infoBg": ladder["panelAlt"],
+        },
+    }
+
+PI_THEMES = [
+    pi_theme("ember-daily-dark", DAILY_DARK, dict(
+        bg="#2e2a25", panel="#38332b", panelAlt="#403a30", selected="#463f34",
+        border="#564e40", toolSuccessBg="#343527", toolErrorBg="#3f2c29")),
+    pi_theme("ember-weekend-dark", WEEKEND_DARK, dict(
+        bg="#131110", panel="#1a1715", panelAlt="#221e1a", selected="#2e2921",
+        border="#403a31", toolSuccessBg="#1b2019", toolErrorBg="#291b19"),
+        vesper_grammar=True),
+]
+
+import os
+pi_dir = os.path.expanduser("~/.pi/agent/themes")
+if os.path.isdir(pi_dir):
+    for t in PI_THEMES:
+        path = os.path.join(pi_dir, t["name"] + ".json")
+        with open(path, "w") as f:
+            json.dump(t, f, indent=2)
+            f.write("\n")
+        json.load(open(path))
+        print("wrote", path)

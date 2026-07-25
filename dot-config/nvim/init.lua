@@ -61,7 +61,8 @@ vim.pack.add({
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 
-vim.cmd.colorscheme("ember") -- variants: vim.g.ember_variant = "daily" | "weekend"
+vim.g.ember_variant = "weekend" -- or "daily"
+vim.cmd.colorscheme("ember")
 -- treesitter
 vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" }, { confirm = false })
 vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" })
