@@ -37,6 +37,8 @@ dot-pi/agent/skills.bak/
 *.key
 *.crt
 .gitconfig.local
+.zshrc.local
+*.local
 
 # Cache directories
 .cache/

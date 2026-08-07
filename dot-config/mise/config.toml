@@ -3,6 +3,7 @@ node = "latest"
 ruby = "3.4.7"
 
 [settings]
+idiomatic_version_file_enable_tools = ["ruby"]
 
 [settings.ruby]
 compile = false
