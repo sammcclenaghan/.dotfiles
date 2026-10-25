@@ -1,18 +1,9 @@
----@type vim.lsp.Config
+-- Merged over nvim-lspconfig's lua_ls config
 return {
-  cmd = { 'lua-language-server' },
-  filetypes = { 'lua' },
-  root_markers = {
-    '.luarc.json',
-    '.luarc.jsonc',
-    '.stylua.toml',
-    'stylua.toml',
-    '.git',
-  },
   settings = {
     Lua = {
       codeLens = { enable = true },
-      hint = { enable = true, semicolon = 'Disable' },
+      hint = { enable = true, semicolon = "Disable" },
     },
   },
 }

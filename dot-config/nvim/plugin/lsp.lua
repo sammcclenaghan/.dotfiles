@@ -1,4 +1,5 @@
--- mason: install LSP servers via :Mason
+-- server configs (lsp/*.lua) come from nvim-lspconfig; mason installs the servers
+vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" })
 vim.pack.add({ "https://github.com/mason-org/mason.nvim" })
 vim.pack.add({ "https://github.com/mason-org/mason-lspconfig.nvim" })
 

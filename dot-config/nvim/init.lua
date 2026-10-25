@@ -10,8 +10,6 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
-
-vim.opt.wrap = true
 vim.opt.smartindent = true
 vim.opt.inccommand = "split"
 
@@ -20,7 +18,6 @@ vim.opt.smartcase = true
 
 vim.opt.undofile = true
 vim.opt.swapfile = false
-vim.opt.backup = false
 
 vim.opt.breakindent = true
 
@@ -29,7 +26,6 @@ vim.opt.cursorline = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
-vim.opt.termguicolors = true
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking text",
@@ -54,10 +50,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 
 vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart Neovim"})
 
-vim.pack.add({
-  "https://github.com/mbbill/undotree",
-  "https://github.com/ellisonleao/gruvbox.nvim",
-})
+vim.pack.add({ "https://github.com/mbbill/undotree" })
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 
@@ -66,7 +59,6 @@ vim.cmd.colorscheme("ember")
 -- treesitter
 vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" }, { confirm = false })
 vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" })
-require("nvim-treesitter.install").update("all")
 require("nvim-treesitter").setup({ auto_install = true })
 
 -- which-key
