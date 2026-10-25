@@ -1,61 +1,10 @@
+// Only settings that differ from Zed's defaults (zed: open default settings).
 {
-  "tabs": {
-    "git_status": true,
-  },
-  "cli_default_open_behavior": "existing_window",
-  "git_panel": {
-    "sort_by": "name",
-  },
-  "instrumentation": {
-    "performance_profiler": {
-      "enabled": false,
-    },
-  },
-  "context_servers": {
-    "Mezmo": {
-      "enabled": true,
-      "url": "https://mcp.mezmo.com/mcp",
-    },
-    "rails-blocks": {
-      "enabled": true,
-      "remote": false,
-      // Token lives in ~/.zshrc.local, out of this public repo.
-      "command": "zsh",
-      "args": ["-c", "source ~/.zshrc.local && exec ~/.local/share/mise/shims/rails-blocks-mcp"],
-      "env": {
-        "RAILS_BLOCKS_CLI": "rails-blocks",
-      },
-    },
-    "fastmail mcp": {
-      "enabled": true,
-      "url": "https://api.fastmail.com/mcp",
-    },
-  },
-  "language_models": {
-    "opencode": {
-      "show_zen_models": false,
-    },
-  },
-  "icon_theme": {
-    "mode": "dark",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)",
-  },
-  "diff_view_style": "split",
-  "unnecessary_code_fade": 0.5,
-  "text_rendering_mode": "platform_default",
-  "buffer_line_height": "comfortable",
-  "edit_predictions": {
-    "allow_data_collection": "yes",
-  },
+  "disable_ai": true,
   "vim_mode": true,
-  "hover_popover_enabled": true,
-  "hover_popover_delay": 300,
+  "session": { "trust_all_worktrees": true },
 
-  "session": {
-    "trust_all_worktrees": true,
-  },
-
+  // Appearance
   "theme": {
     "mode": "dark",
     "light": "GitHub Light",
@@ -66,235 +15,52 @@
   "ui_font_family": ".SystemUIFont",
   "ui_font_size": 14,
   "ui_font_weight": 450,
-  "agent_ui_font_size": 16.0,
-  "agent_buffer_font_size": 14.0,
+  "unnecessary_code_fade": 0.5,
+  "cursor_blink": false,
+  "zoomed_padding": false,
+  "active_pane_modifiers": { "inactive_opacity": 0.8 },
+
+  // Editing
   "tab_size": 2,
   "soft_wrap": "editor_width",
   "format_on_save": "on",
   "autosave": "on_focus_change",
-  "bottom_dock_layout": "full",
-  "zoomed_padding": false,
-
   "relative_line_numbers": "enabled",
   "vertical_scroll_margin": 8,
   "expand_excerpt_lines": 8,
   "use_smartcase_search": true,
-  "cursor_blink": false,
-
-  "which_key": {
-    "enabled": true,
-    "delay_ms": 150,
-  },
-
   "vim": {
-    "use_system_clipboard": "always",
     "use_smartcase_find": true,
-    "use_regex_search": true,
     "toggle_relative_line_numbers": true,
-    "highlight_on_yank_duration": 200,
   },
+  "which_key": { "enabled": true, "delay_ms": 150 },
 
-  "git": {
-    "inline_blame": {
-      "delay_ms": 300,
-      "min_column": 180,
-      "location": "status_bar",
-    },
-  },
-
-  "agent_servers": {
-    "claude-acp": {
-      "default_config_options": {
-        "model": "claude-fable-5[1m]",
-      },
-      "type": "registry",
-    },
-    "codex-acp": {
-      "default_config_options": {
-        "reasoning_effort": "high",
-        "model": "gpt-5.6-luna",
-      },
-      "type": "registry",
-    },
-    "pi-acp": {
-      "type": "registry",
-      "default_mode": "high",
-      "default_config_options": { "model": "opencode-go/kimi-k2.7-code" },
-    },
-    "opencode": {
-      "type": "registry",
-      "default_config_options": {
-        "effort": "high",
-        "model": "github-copilot/gpt-5.6-sol",
-        "mode": "plan",
-      },
-    },
-  },
-
-  "agent": {
-    "inline_assistant_model": {
-      "provider": "openai-subscribed",
-      "model": "gpt-5.6-sol",
-      "enable_thinking": false,
-    },
-    "auto_compact": {
-      "threshold": "60%",
-    },
-    "sandbox_permissions": {
-      "network_hosts": [
-        "api.github.com",
-        "github.com",
-        "rubygems.org",
-        "raw.githubusercontent.com",
-        "docs.appsignal.com",
-      ],
-    },
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "gpt-5.6-luna",
-      "enable_thinking": true,
-      "effort": "medium",
-    },
-    "subagent_model": {
-      "provider": "opencode",
-      "model": "go/deepseek-v4-pro",
-    },
-    "message_editor_min_lines": 4,
-    "thinking_display": "always_expanded",
-    "commit_message_model": {
-      "provider": "opencode",
-      "model": "go/deepseek-v4-flash",
-    },
-    "commit_message_include_project_rules": true,
-    "commit_message_instructions": "Write commit messages in Mitchell Hashimoto style: lowercase component/scope prefix, colon, imperative verb, and the conceptual action rather than the literal edit (e.g. 'terminal: bound page map probe lengths', 'libghostty: fix utf-8 grapheme length overflow'). Subject ≤72 chars with no period. Prefer exactly one subject line; omit the body unless the change is unusually complex and a short rationale is essential to understand it. Do not narrate the diff line-by-line or describe what was edited — describe why. No Co-authored-by or AI trailers.",
-    "play_sound_when_agent_done": "when_hidden",
-    // Flex-based width: the agent dock keeps a proportion of the window
-    // instead of fixed pixels. Drag it wide once per project and the ratio
-    // is remembered and scales with window size. No zoom involved, so the
-    // mode chords stay deterministic.
-    "flexible": true,
-    "default_width": 760,
-    "expand_edit_card": true,
-    "expand_terminal_card": false,
-    "limit_content_width": true,
-    "max_content_width": 896,
-    "show_turn_stats": true,
-    "tool_permissions": {
-      "default": "confirm",
-      "tools": {
-        "mcp:rails-blocks:rails_blocks_get_examples": {
-          "default": "allow",
-        },
-        "mcp:rails-blocks:rails_blocks_get_docs": {
-          "default": "allow",
-        },
-        "mcp:rails-blocks:rails_blocks_search_docs": {
-          "default": "allow",
-        },
-        "mcp:rails-blocks:rails_blocks_list_components": {
-          "default": "allow",
-        },
-        "fetch": {
-          "default": "allow",
-        },
-        "skill": {
-          "default": "allow",
-        },
-        "create_thread": {
-          "default": "allow",
-        },
-        "read_file": { "default": "allow" },
-        "list_directory": { "default": "allow" },
-        "find_path": { "default": "allow" },
-        "grep": { "default": "allow" },
-        "diagnostics": { "default": "allow" },
-        "find_references": { "default": "allow" },
-        "go_to_definition": { "default": "allow" },
-        "get_code_actions": { "default": "allow" },
-        "create_directory": { "default": "allow" },
-        "edit_file": {
-          "default": "allow",
-          "always_deny": [
-            { "pattern": "\\.env($|\\.)" },
-            { "pattern": "secrets?/" },
-            { "pattern": "\\.(pem|key|crt|cert)$" },
-          ],
-        },
-        "write_file": {
-          "default": "allow",
-          "always_deny": [
-            { "pattern": "\\.env($|\\.)" },
-            { "pattern": "secrets?/" },
-            { "pattern": "\\.(pem|key|crt|cert)$" },
-          ],
-        },
-        "terminal": {
-          "default": "allow",
-          "always_allow": [
-            { "pattern": "^(ls|pwd|wc|which|file|stat)\\b" },
-            { "pattern": "^(rg|grep|fd|find)\\b" },
-            { "pattern": "^git\\s+(status|log|diff|show|branch|blame)\\b" },
-            {
-              "pattern": "^gh\\s+(issue|pr|run|api)\\s+(view|list|status|diff|checks)\\b",
-            },
-            { "pattern": "^cargo\\s+(check|clippy|fmt|tree|metadata)\\b" },
-            { "pattern": "^\\./script/clippy\\b" },
-            { "pattern": "^bundle\\s+exec\\s+(rspec|rubocop)\\b" },
-          ],
-          "always_confirm": [
-            { "pattern": "\\bsudo\\b" },
-            { "pattern": "\\brm\\s+-[a-zA-Z]*[rf]" },
-            { "pattern": "git\\s+push" },
-            { "pattern": "git\\s+reset\\s+--hard" },
-            { "pattern": "git\\s+clean" },
-          ],
-        },
-      },
-    },
-  },
-
-  "tab_bar": { "show": true },
+  // Chrome: hide what the keymap covers
+  "bottom_dock_layout": "full",
+  "tabs": { "git_status": true },
   "preview_tabs": { "enable_preview_from_file_finder": true },
-  "toolbar": {
-    "breadcrumbs": true,
-    "quick_actions": false,
-    "selections_menu": false,
-  },
+  "toolbar": { "quick_actions": false, "selections_menu": false },
   "scrollbar": { "show": "never" },
-  "minimap": { "show": "never" },
   "indent_guides": { "enabled": false },
-  "active_pane_modifiers": {
-    "border_size": 0.0,
-    "inactive_opacity": 0.8,
-  },
-  "gutter": { "folds": true, "runnables": false, "breakpoints": false },
+  "gutter": { "runnables": false, "breakpoints": false },
   "title_bar": {
-    "show_menus": false,
     "show_sign_in": false,
     "show_user_picture": false,
     "show_user_menu": false,
     "show_onboarding_banner": false,
-    "show_project_items": true,
-    "show_branch_name": true,
   },
-  "status_bar": {
-    "cursor_position_button": true,
-    "active_language_button": false,
-    "line_endings_button": false,
-  },
+  "status_bar": { "active_language_button": false },
   "project_panel": { "button": false },
   "outline_panel": { "button": false },
-  "terminal": {
-    "button": false,
-    "copy_on_select": true,
-    "font_size": 13,
-    "env": {
-      "EDITOR": "zed --wait",
-      "VISUAL": "zed --wait",
-    },
-  },
+  "terminal": { "button": false, "copy_on_select": true },
   "search": { "button": false },
   "debugger": { "button": false },
+
+  // Git
+  "git_panel": { "sort_by": "name" },
+  "git": {
+    "inline_blame": { "delay_ms": 300, "min_column": 180, "location": "status_bar" },
+  },
   "command_aliases": {
     "gd": "git::Diff",
     "gb": "git::Branch",
@@ -304,28 +70,16 @@
     "tsd": "editor::ToggleSplitDiff",
   },
 
+  // Languages
   "languages": {
     "Ruby": {
-      "show_edit_predictions": false,
-      "tab_size": 2,
       "formatter": "language_server",
       "preferred_line_length": 120,
       "soft_wrap": "preferred_line_length",
-      "language_servers": [
-        "ruby-lsp",
-        "rubocop",
-        "!solargraph",
-        "!sorbet",
-        "!steep",
-        "!kanayago",
-      ],
+      "language_servers": ["ruby-lsp", "rubocop", "!solargraph", "!sorbet", "!steep", "!kanayago"],
     },
-    "HTML+ERB": {
-      "language_servers": ["herb", "ruby-lsp"],
-    },
-    "ERB": {
-      "language_servers": ["ruby-lsp"],
-    },
+    "HTML+ERB": { "language_servers": ["herb", "ruby-lsp"] },
+    "ERB": { "language_servers": ["ruby-lsp"] },
     "TypeScript": {
       "formatter": "prettier",
       "language_servers": ["typescript-language-server", "!vtsls"],
@@ -336,15 +90,9 @@
     },
     "TSX": {
       "formatter": "prettier",
-      "language_servers": [
-        "typescript-language-server",
-        "eslint",
-        "tailwindcss-language-server",
-        "!vtsls",
-      ],
+      "language_servers": ["typescript-language-server", "eslint", "tailwindcss-language-server", "!vtsls"],
     },
   },
-
   "lsp": {
     "typescript-language-server": {
       "initialization_options": {
@@ -366,64 +114,34 @@
         "path": "/Users/sammcclenaghan/.local/share/mise/shims/rubocop",
         "arguments": ["--lsp"],
       },
-      "settings": {
-        "use_bundler": false,
-      },
-      "initialization_options": {
-        "safeAutocorrect": true,
-      },
+      "settings": { "use_bundler": false },
+      "initialization_options": { "safeAutocorrect": true },
     },
     "ruby-lsp": {
-      "binary": {
-        "path": "/Users/sammcclenaghan/.local/share/mise/shims/ruby-lsp",
-      },
-      "settings": {
-        "use_bundler": true,
-      },
+      "binary": { "path": "/Users/sammcclenaghan/.local/share/mise/shims/ruby-lsp" },
+      "settings": { "use_bundler": true },
+      // rubocop's own server reports diagnostics
       "initialization_options": {
         "formatter": "rubocop",
-        "enabledFeatures": {
-          "hover": true,
-          "completion": true,
-          "definition": true,
-          "codeActions": true,
-          "formatting": true,
-          "diagnostics": false,
-          "semanticHighlighting": true,
-        },
+        "enabledFeatures": { "diagnostics": false },
       },
     },
   },
-
   "auto_install_extensions": {
     "ruby": true,
-    "html": true,
-    "base16": true,
     "toml": true,
     "sql": true,
     "xml": true,
     "astro": true,
+    "github-theme": true,
   },
 
+  // Zed's defaults plus build and tooling output
   "file_scan_exclusions": [
-    "**/.git",
-    "**/.svn",
-    "**/.hg",
-    "**/.DS_Store",
-    "**/Thumbs.db",
-    "**/.classpath",
-    "**/.settings",
-    "**/out",
-    "**/dist",
-    "**/.husky",
-    "**/.turbo",
-    "**/.vscode-test",
-    "**/.vscode",
-    "**/.next",
-    "**/.storybook",
-    "**/.tap",
-    "**/.nyc_output",
-    "**/report",
-    "**/node_modules",
+    "**/.git", "**/.svn", "**/.hg", "**/.jj", "**/.sl", "**/.repo", "**/CVS",
+    "**/.DS_Store", "**/Thumbs.db", "**/.classpath", "**/.settings",
+    "**/node_modules", "**/dist", "**/out", "**/.next", "**/.turbo",
+    "**/.husky", "**/.storybook", "**/.vscode", "**/.vscode-test",
+    "**/.tap", "**/.nyc_output", "**/report",
   ],
 }
