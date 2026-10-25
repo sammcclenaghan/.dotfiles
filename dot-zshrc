@@ -3,6 +3,14 @@ alias ls="ls -G"
 eval "$("$HOME/.local/bin/mise" activate zsh)"
 eval "$(starship init zsh)"
 
+# Prompt marks (OSC 133) so Rex knows where each prompt, command and output
+# starts: powers Jump to Previous/Next Prompt. Zero-width, so layout is unchanged.
+_mark_preexec() { _mark_ran=1; print -n '\e]133;C\a' }
+_mark_precmd() { local s=$?; (( _mark_ran )) && print -n "\e]133;D;$s\a"; _mark_ran=0 }
+precmd_functions=(_mark_precmd $precmd_functions)  # first, to see the real exit code
+preexec_functions+=(_mark_preexec)
+PROMPT="%{$(print -n '\e]133;A\a')%}$PROMPT%{$(print -n '\e]133;B\a')%}"
+
 autoload -Uz compinit && compinit
 
 plugins="$HOMEBREW_PREFIX/share"
@@ -23,7 +31,6 @@ eval "$(zoxide init zsh --cmd cd)"
 # Records each Rex pane's last command so rexurrect can restore it
 source "$HOME/.config/zsh/rexurrect.plugin.zsh"
 
-# Kiro terminal integration (work)
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
 # Machine-local secrets (git-ignored)
