@@ -1,6 +1,9 @@
 [tools]
 node = "latest"
+"npm:@earendil-works/pi-coding-agent" = "latest"
+"npm:@rails-blocks/mcp" = "latest"
 ruby = "3.4.7"
+"npm:@herb-tools/language-server" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby"]
