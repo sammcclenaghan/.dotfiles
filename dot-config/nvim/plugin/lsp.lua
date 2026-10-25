@@ -4,12 +4,12 @@ vim.pack.add({ "https://github.com/mason-org/mason-lspconfig.nvim" })
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "ruby_lsp", "gopls", "ts_ls" },
+  ensure_installed = { "lua_ls", "ruby_lsp", "gopls", "ts_ls", "basedpyright" },
   automatic_enable = true,
 })
 
 -- servers not in mason (or you prefer manual install)
-vim.lsp.enable({ "herb_ls" })
+vim.lsp.enable({ "herb_ls", "clangd" })
 
 -- folding: LSP when available, treesitter fallback
 vim.o.foldmethod = "expr"

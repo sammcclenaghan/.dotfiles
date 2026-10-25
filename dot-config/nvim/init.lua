@@ -74,6 +74,7 @@ vim.pack.add({ "https://github.com/folke/which-key.nvim" }, { confirm = false })
 require("which-key").setup({
   spec = {
     { "<leader>s", group = "[S]earch", icon = { icon = "", color = "green" } },
+    { "<leader>p", group = "[P]ecan" },
   },
 })
 
@@ -105,3 +106,7 @@ vim.keymap.set("n", "<leader>sf", function() require("fff").find_files() end, { 
 vim.keymap.set("n", "<leader>sg", function() require("fff").live_grep() end, { desc = "[S]earch by [G]rep" })
 vim.keymap.set("n", "<leader>sw", function() require("fff").live_grep({ query = vim.fn.expand("<cword>") }) end, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sd", function() vim.diagnostic.setqflist() end, { desc = "[S]earch [D]iagnostics" })
+
+-- pecan: offline NeetCode 150 (~/code/primary/pecan)
+vim.opt.rtp:prepend(vim.fn.expand("~/code/primary/pecan/nvim"))
+vim.keymap.set("n", "<leader>pp", "<cmd>Pecan<cr>", { desc = "pecan: problem list" })
