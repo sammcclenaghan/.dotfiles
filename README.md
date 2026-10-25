@@ -1,54 +1,52 @@
 # Dotfiles
 
-This repo contains my dotfiles for my Mac environment.
-These are managed using GNU Stow to simplify the symlink-ing process.
+My Mac setup, managed with [GNU Stow](https://www.gnu.org/software/stow/manual/stow.html).
+Zed for code, [Rex](https://www.superlogical.com/rex) for terminals and coding agents.
 
-### Requirements
+## Install
 
-Ensure you have the following installed on your system:
-
-* zsh: Set as your default shell
-* Git: To clone this repo
-* [GNU Stow](https://www.gnu.org/software/stow/manual/stow.html): For managing symlinks
-* [Neovim](https://neovim.io/doc/): For editing configuration files
-* [Zed](https://zed.dev/docs): As an additional editor
-* [Starship](https://starship.rs/guide/): For shell prompts
-* [Tmux](https://github.com/tmux/tmux/wiki): For terminal multiplexing
-* [Obsidian](https://help.obsidian.md/): For note management
-* [Antigen](https://github.com/zsh-users/antigen): For zsh plugin management
-* [Mise](https://mise.jdx.dev/): For managing runtimes
-* [Pi](https://github.com/earendil-works/pi): Coding agent (config in `dot-pi/`)
-
-### Layout
-
-Everything uses stow's `--dotfiles` convention: `dot-foo` stows to `~/.foo`.
-
-* `dot-config/` → `~/.config/` (nvim, zed, gh, mise, starship, scripts)
-* `dot-pi/` → `~/.pi/` (agent settings, keybindings, themes, prompts; state and secrets stay unmanaged)
-* `dot-zshrc`, `dot-gitconfig`, `dot-tmux.conf`, `dot-obsidian.vimrc` → home directory
-
-The Ember theme family (Zed + Neovim + pi) is generated from a single palette in
-`dot-config/scripts/gen_ember.py` — edit that and rerun it rather than hand-editing
-the theme files.
-
-### Installation
-
-1. Clone the repository
-   Clone this repository into your `$HOME` directory:
-
-```
-$ git clone git@github.com:sammcclenaghan/.dotfiles.git ~/.dotfiles
-$ cd .dotfiles
+```sh
+xcode-select --install
+# Homebrew: https://brew.sh
+git clone git@github.com:sammcclenaghan/.dotfiles.git ~/.dotfiles
+brew install stow && ~/.dotfiles/install.sh
+brew bundle --global
 ```
 
-2. Symlink Dotfiles Using GNU Stow
-   Use GNU Stow to symlink the files to their respective locations:
+`install.sh` creates `~/.config` and `~/.pi/agent` first, so Stow links each app's folder
+inside them rather than the whole directory. Rerun it after adding files; it restows.
 
-```
-$ stow --dotfiles --adopt .
-```
+Then the things Homebrew doesn't cover:
 
-3. Change .gitconfig.local
-   Change the `user.name` and `user.email` information to your respective name and email
+- [Rex](https://www.superlogical.com/rex/docs/installation), then `rex skill setup` for agents
+- [mise](https://mise.jdx.dev) (`curl https://mise.run | sh`), then `mise install` for Node,
+  Ruby and the npm tools in `mise/config.toml` (Pi, rails-blocks MCP, Herb LSP)
+- [rustup](https://rustup.rs), then `cargo install --git https://github.com/cemcatik/rexurrect`
+  and `rexurrect autosave install`
+- Claude Code and Kiro from their installers
+- `~/.zshrc.local` for secrets (`OPENCODE_API_KEY`, `RAILS_BLOCKS_API_TOKEN`). It's git-ignored.
 
-Video showing GNU Stow in action: [https://www.youtube.com/watch?v=CFzD9SekOew](https://www.youtube.com/watch?v=CFzD9SekOew)
+## Layout
+
+Stow's `--dotfiles` convention: `dot-foo` links to `~/.foo`.
+
+| Path | What |
+|---|---|
+| `dot-zshrc`, `dot-zprofile`, `dot-zshenv` | zsh. No plugin manager: plugins come from Homebrew |
+| `dot-config/zsh/` | Vendored [rexurrect](https://github.com/cemcatik/rexurrect) recorder |
+| `dot-config/rex/init.lua` | Rex: ⌘⇧E open pane in Zed, ⌘⇧O project session, ctrl-a h/j/k/l panes |
+| `dot-config/zed/` | Zed settings, keymap, tasks, themes |
+| `dot-config/nvim/` | Neovim (vim.pack, mason) |
+| `dot-config/mise/` | Runtimes and global npm tools |
+| `dot-config/git/ignore`, `dot-gitconfig` | Git |
+| `dot-config/gh/`, `dot-config/starship.toml`, `dot-config/scripts/` | gh, prompt, scripts |
+| `dot-pi/` | Pi agent settings (state and secrets stay unmanaged) |
+| `dot-Brewfile` | Homebrew packages (`brew bundle --global`; refresh with `brew bundle dump --global -f`) |
+
+The Ember theme family (Zed, Neovim, Pi) is generated from one palette in
+`dot-config/scripts/gen_ember.py`. Edit that and rerun it rather than editing the theme files.
+
+## Not tracked
+
+Agent configs (`~/.claude`, `~/.codex`, opencode) hold work details and tokens, so they stay
+out of this public repo, as does anything matching `*.local`.
