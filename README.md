@@ -35,16 +35,13 @@ Stow's `--dotfiles` convention: `dot-foo` links to `~/.foo`.
 | `dot-zshrc`, `dot-zprofile`, `dot-zshenv` | zsh. No plugin manager: plugins come from Homebrew |
 | `dot-config/zsh/` | Vendored [rexurrect](https://github.com/cemcatik/rexurrect) recorder |
 | `dot-config/rex/init.lua` | Rex: ⌘⇧E open pane in Zed, ⌘⇧O project session, ctrl-a h/j/k/l panes |
-| `dot-config/zed/` | Zed settings, keymap, tasks, themes |
+| `dot-config/zed/` | Zed settings (AI off, only non-defaults), keymap, tasks, themes |
 | `dot-config/nvim/` | Neovim (vim.pack, mason) |
 | `dot-config/mise/` | Runtimes and global npm tools |
 | `dot-config/git/ignore`, `dot-gitconfig` | Git |
-| `dot-config/gh/`, `dot-config/starship.toml`, `dot-config/scripts/` | gh, prompt, scripts |
+| `dot-config/starship.toml` | Prompt |
 | `dot-pi/` | Pi agent settings (state and secrets stay unmanaged) |
 | `dot-Brewfile` | Homebrew packages (`brew bundle --global`; refresh with `brew bundle dump --global -f`) |
-
-The Ember theme family (Zed, Neovim, Pi) is generated from one palette in
-`dot-config/scripts/gen_ember.py`. Edit that and rerun it rather than editing the theme files.
 
 ## Not tracked
 
