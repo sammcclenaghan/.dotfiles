@@ -123,6 +123,58 @@ rex.action{
 
 rex.bind("cmd+shift+o", "project_session")
 
+local nvim = "/opt/homebrew/bin/nvim"
+
+local function viewer_block()
+  for _, w in ipairs((rex.session.view{} or {}).windows or {}) do
+    for _, layer in ipairs(w.layers or {}) do
+      for _, b in ipairs(layer.blocks or {}) do
+        if b.label == "viewer" then return b.block_id end
+      end
+    end
+  end
+end
+
+rex.action{
+  name        = "show_code",
+  title       = "Show Code in Neovim",
+  description = "Open a file at a line in this session's read-only Neovim viewer pane",
+  args        = { path = "string", line = "integer?", block_id = "string?" },
+  run = function(ctx, args)
+    local from = args.block_id or ctx.block_id or focused_block()
+    local path, line = args.path, args.line or 1
+    if path:sub(1, 1) ~= "/" then
+      local dir = from and pane_dir(from)
+      if not dir then error("can't resolve a relative path without a pane", 0) end
+      path = dir .. "/" .. path
+    end
+
+    local viewer = viewer_block()
+    if viewer then
+      local escaped = path:gsub('[ \\%%#|"]', "\\%0")
+      rex.block.call(terminal, "write", {
+        block_id = viewer,
+        data = string.format("\27\27:view +%d %s\rzz", line, escaped),
+      })
+      return { block_id = viewer }
+    end
+
+    local split, err = rex.session.new_split{
+      anchor_id = from,
+      direction = "horizontal",
+      side      = "after",
+      ratio     = 0.55,
+      layout    = rex.layout.block{
+        flavor  = terminal .. ".shell",
+        label   = "viewer",
+        options = { command = { nvim, "-R", "+" .. line, "+normal! zz", path } },
+      },
+    }
+    if split == nil then error(err, 0) end
+    return { block_id = split.block_ids[1] }
+  end,
+}
+
 -- Pane movement carried over from tmux: ctrl+a, then h/j/k/l.
 -- Press ctrl+a twice to send ctrl+a to the terminal.
 for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
