@@ -1,6 +1,5 @@
 [core]
-  editor=nvim
-	excludesFile = ~/.gitignore
+  editor = zed --wait
 [init]
   defaultBranch = main
 [push]
