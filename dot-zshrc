@@ -1,36 +1,44 @@
-# Created by Zap installer
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-plug "zsh-users/zsh-autosuggestions"
-plug "zsh-users/zsh-syntax-highlighting"
-
 alias ls="ls -G"
 
-eval "$(/Users/sammcclenaghan/.local/bin/mise activate zsh)"
-eval "$(starship init zsh)"
+# Open commit messages, agent prompts, etc. in Zed
+export EDITOR="zed --wait"
+export VISUAL="$EDITOR"
 
-# bun completions
-[ -s "/Users/sammcclenaghan/.bun/_bun" ] && source "/Users/sammcclenaghan/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-eval "$(zoxide init zsh)"
-
-# Pi
-export PATH="/Users/sammcclenaghan/.local/share/mise/installs/node/25.9.0/bin:$PATH"
-
-# nub
-export PATH="$HOME/.nub/bin:$PATH"
-
-# pnpm
-export PNPM_HOME="/Users/sammcclenaghan/Library/pnpm"
+# PATH
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
+export PATH="$HOME/.nub/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
-# ---- Machine-local secrets (git-ignored) ----
+# Tools
+eval "$("$HOME/.local/bin/mise" activate zsh)"
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
+
+# Completion (Homebrew's completions are on fpath via brew shellenv)
+autoload -Uz compinit && compinit
+
+# Plugins, installed with Homebrew (see Brewfile). Order matters:
+# fzf-tab after compinit, fast-syntax-highlighting last.
+plugins="$HOMEBREW_PREFIX/share"
+source "$plugins/fzf-tab/fzf-tab.zsh"
+source "$plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$plugins/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+unset plugins
+
+# fzf-tab: match case-insensitively, preview directories on cd
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -G $realpath'
+
+# Records each Rex pane's last command so rexurrect can restore it
+source "$HOME/.config/zsh/rexurrect.plugin.zsh"
+
+# Kiro terminal integration (work)
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Machine-local secrets (git-ignored)
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
