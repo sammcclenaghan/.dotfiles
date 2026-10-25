@@ -21,9 +21,7 @@ Then install the tools you need with Homebrew (the zsh plugins: `brew install zs
 - [mise](https://mise.jdx.dev) (`curl https://mise.run | sh`), then `mise install` for
   everything in `mise/config.toml`: Node, Ruby, Rust, the npm tools (Pi, rails-blocks MCP,
   Herb LSP) and rexurrect. Then `rexurrect autosave install`, and again after bumping its rev.
-- Claude Code and Kiro from their installers. For Zed follow mode, add a `PostToolUse` hook
-  to `~/.claude/settings.json` with matcher `Edit|MultiEdit|Write` running
-  `"$HOME/.local/bin/zed-follow"`
+- Claude Code and Kiro from their installers
 - `~/.zshrc.local` for secrets (`OPENCODE_API_KEY`, `RAILS_BLOCKS_API_TOKEN`). It's git-ignored.
 
 ## Layout
@@ -36,7 +34,6 @@ Stow's `--dotfiles` convention: `dot-foo` links to `~/.foo`.
 | `dot-config/zsh/` | Vendored [rexurrect](https://github.com/cemcatik/rexurrect) recorder |
 | `dot-config/rex/init.lua` | Rex: ⌘⇧E open pane in Zed, ⌘⇧O project session, ctrl-a h/j/k/l panes |
 | `dot-config/zed/` | Zed settings (AI off, only non-defaults), keymap, tasks, themes |
-| `dot-local/bin/zed-follow` | Claude Code hook: Zed shows each file Claude edits at the changed line, without taking focus (`zed-follow off`/`on`) |
 | `dot-config/nvim/` | Neovim (vim.pack, mason) |
 | `dot-config/mise/` | Runtimes and global npm tools |
 | `dot-config/git/ignore`, `dot-gitconfig` | Git |
