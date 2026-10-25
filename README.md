@@ -18,10 +18,9 @@ inside them rather than the whole directory. Rerun it after adding files; it res
 Then install the tools you need with Homebrew (the zsh plugins: `brew install zsh-autosuggestions zsh-fast-syntax-highlighting fzf-tab`), plus:
 
 - [Rex](https://www.superlogical.com/rex/docs/installation), then `rex skill setup` for agents
-- [mise](https://mise.jdx.dev) (`curl https://mise.run | sh`), then `mise install` for Node,
-  Ruby and the npm tools in `mise/config.toml` (Pi, rails-blocks MCP, Herb LSP)
-- [rustup](https://rustup.rs), then `cargo install --git https://github.com/cemcatik/rexurrect`
-  and `rexurrect autosave install`
+- [mise](https://mise.jdx.dev) (`curl https://mise.run | sh`), then `mise install` for
+  everything in `mise/config.toml`: Node, Ruby, Rust, the npm tools (Pi, rails-blocks MCP,
+  Herb LSP) and rexurrect. Then `rexurrect autosave install`, and again after bumping its rev.
 - Claude Code and Kiro from their installers
 - `~/.zshrc.local` for secrets (`OPENCODE_API_KEY`, `RAILS_BLOCKS_API_TOKEN`). It's git-ignored.
 

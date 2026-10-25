@@ -1,12 +1,12 @@
 [tools]
-node = "latest"
-"npm:@earendil-works/pi-coding-agent" = "latest"
-"npm:@rails-blocks/mcp" = "latest"
+node = "lts"
 ruby = "3.4.7"
+"npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:@herb-tools/language-server" = "latest"
+"npm:@rails-blocks/mcp" = "latest"
+rust = "stable"
+"cargo:https://github.com/cemcatik/rexurrect" = "rev:5f82470803fb33e3ab3dc8ba7f005780672751d3"
 
 [settings]
-idiomatic_version_file_enable_tools = ["ruby"]
-
-[settings.ruby]
-compile = false
+# Also read projects' .ruby-version and .nvmrc / .node-version files
+idiomatic_version_file_enable_tools = ["ruby", "node"]

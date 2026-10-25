@@ -130,10 +130,10 @@ for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) d
 end
 rex.bind("ctrl+a>ctrl+a", "pane.send_key", { key = "ctrl+a" })
 
--- rexurrect: restore saved sessions when the server starts.
+-- rexurrect (installed by mise): restore saved sessions when the server starts.
 do
   local home = os.getenv("HOME")
-  local r = rex.exec({ home .. "/.cargo/bin/rexurrect", "auto-restore" },
+  local r = rex.exec({ home .. "/.local/share/mise/shims/rexurrect", "auto-restore" },
     { env = { REXURRECT_STATE_DIR = home .. "/.local/state/rexurrect" } })
   if r then io.stderr:write(r.stderr) end
 end
