@@ -1,5 +1,5 @@
 {
-  "defaultModel": "deepseek-v4-flash",
+  "defaultModel": "glm-5.3-flash",
   "defaultProvider": "opencode-go",
   "defaultThinkingLevel": "high",
   "externalEditor": "zed --wait",
@@ -26,10 +26,8 @@
     "openai-codex/gpt-5.6-sol",
     "openai-codex/gpt-5.6-terra"
   ],
-  "lastChangelogVersion": "0.83.0",
+  "lastChangelogVersion": "1.3.0",
   "quietStartup": true,
-  "packages": [
-    "npm:spotme"
-  ],
+  "packages": [],
   "theme": "ember-weekend-dark"
 }
