@@ -22,6 +22,7 @@
           "project_panel::ToggleFocus",
         ],
       ],
+
       // AGENT — workspace sidebar + agent panel, focus in the message
       // editor. No zoom: panel zoom state persists invisibly across dock
       // close/open, so a zoomed agent mode can't be made deterministic from
@@ -136,6 +137,16 @@
       "space t s": "task::Spawn",
       "space t r": "task::Rerun",
       "space t n": "editor::SpawnNearestTask",
+
+      "space a r": [
+        "action::Sequence",
+        [
+          "editor::SelectLargerSyntaxNode",
+          "editor::SelectLargerSyntaxNode",
+          "agent::AddSelectionToThread",
+          "agent::ToggleFocus",
+        ],
+      ],
 
       // splits
       "\\": ["pane::SplitRight", {}],

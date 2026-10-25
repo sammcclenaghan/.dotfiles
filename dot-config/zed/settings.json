@@ -1,6 +1,6 @@
 {
   "tabs": {
-    "git_status": true
+    "git_status": true,
   },
   "cli_default_open_behavior": "existing_window",
   "git_panel": {
@@ -14,16 +14,16 @@
   "context_servers": {
     "Mezmo": {
       "enabled": true,
-      "url": "https://mcp.mezmo.com/mcp"
+      "url": "https://mcp.mezmo.com/mcp",
     },
     "rails-blocks": {
       "enabled": true,
       "remote": false,
-      "command": "rails-blocks-mcp",
-      "args": [],
+      // Token lives in ~/.zshrc.local, out of this public repo.
+      "command": "zsh",
+      "args": ["-c", "source ~/.zshrc.local && exec ~/.local/share/mise/shims/rails-blocks-mcp"],
       "env": {
         "RAILS_BLOCKS_CLI": "rails-blocks",
-        "RAILS_BLOCKS_API_TOKEN": "rb_omtop5TIJ28ggjrDoYj3TaaHfWaWzD3wrWn0zGCV6G8",
       },
     },
     "fastmail mcp": {
@@ -58,7 +58,7 @@
 
   "theme": {
     "mode": "dark",
-    "light": "Ember Daily Light",
+    "light": "GitHub Light",
     "dark": "Ember Daily Dark",
   },
   "buffer_font_family": "JetBrains Mono",
@@ -105,7 +105,7 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "model": "opus[1m]",
+        "model": "claude-fable-5[1m]",
       },
       "type": "registry",
     },
@@ -123,7 +123,11 @@
     },
     "opencode": {
       "type": "registry",
-      "default_config_options": { "mode": "plan" },
+      "default_config_options": {
+        "effort": "high",
+        "model": "github-copilot/gpt-5.6-sol",
+        "mode": "plan",
+      },
     },
   },
 
@@ -131,7 +135,7 @@
     "inline_assistant_model": {
       "provider": "openai-subscribed",
       "model": "gpt-5.6-sol",
-      "enable_thinking": false
+      "enable_thinking": false,
     },
     "auto_compact": {
       "threshold": "60%",
@@ -146,10 +150,10 @@
       ],
     },
     "default_model": {
-      "provider": "opencode",
-      "model": "go/deepseek-v4-pro",
+      "provider": "zed.dev",
+      "model": "gpt-5.6-luna",
       "enable_thinking": true,
-      "effort": "max",
+      "effort": "medium",
     },
     "subagent_model": {
       "provider": "opencode",
@@ -363,7 +367,7 @@
         "arguments": ["--lsp"],
       },
       "settings": {
-        "use_bundler": true,
+        "use_bundler": false,
       },
       "initialization_options": {
         "safeAutocorrect": true,
