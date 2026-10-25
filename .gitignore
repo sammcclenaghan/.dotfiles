@@ -43,3 +43,6 @@ dot-pi/agent/skills.bak/
 # Cache directories
 .cache/
 node_modules/
+
+# Local only: lists work tools
+dot-Brewfile

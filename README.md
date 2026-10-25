@@ -10,13 +10,12 @@ xcode-select --install
 # Homebrew: https://brew.sh
 git clone git@github.com:sammcclenaghan/.dotfiles.git ~/.dotfiles
 brew install stow && ~/.dotfiles/install.sh
-brew bundle --global
 ```
 
 `install.sh` creates `~/.config` and `~/.pi/agent` first, so Stow links each app's folder
 inside them rather than the whole directory. Rerun it after adding files; it restows.
 
-Then the things Homebrew doesn't cover:
+Then install the tools you need with Homebrew (the zsh plugins: `brew install zsh-autosuggestions zsh-fast-syntax-highlighting fzf-tab`), plus:
 
 - [Rex](https://www.superlogical.com/rex/docs/installation), then `rex skill setup` for agents
 - [mise](https://mise.jdx.dev) (`curl https://mise.run | sh`), then `mise install` for Node,
@@ -41,9 +40,8 @@ Stow's `--dotfiles` convention: `dot-foo` links to `~/.foo`.
 | `dot-config/git/ignore`, `dot-gitconfig` | Git |
 | `dot-config/starship.toml` | Prompt |
 | `dot-pi/` | Pi agent settings (state and secrets stay unmanaged) |
-| `dot-Brewfile` | Homebrew packages (`brew bundle --global`; refresh with `brew bundle dump --global -f`) |
 
 ## Not tracked
 
-Agent configs (`~/.claude`, `~/.codex`, opencode) hold work details and tokens, so they stay
+Agent configs (`~/.claude`, `~/.codex`) and the Brewfile hold work details and tokens, so they stay
 out of this public repo, as does anything matching `*.local`.
