@@ -175,12 +175,57 @@ rex.action{
   end,
 }
 
--- Pane movement carried over from tmux: ctrl+a, then h/j/k/l.
--- Press ctrl+a twice to send ctrl+a to the terminal.
-for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
-  rex.bind("ctrl+a>" .. key, "pane.focus", { direction = direction })
+local function collect_blocks(t, out)
+  if t.block_id and t.rect then out[#out + 1] = t end
+  for _, v in pairs(t) do
+    if type(v) == "table" then collect_blocks(v, out) end
+  end
+  return out
 end
-rex.bind("ctrl+a>ctrl+a", "pane.send_key", { key = "ctrl+a" })
+
+local function has_neighbor(block_id, direction)
+  local e = 1e-6
+  for _, w in ipairs((rex.session.view{} or {}).windows or {}) do
+    local blocks = collect_blocks(w.layers or {}, {})
+    for _, me in ipairs(blocks) do
+      if me.block_id == block_id then
+        local x, y, wd, ht = me.rect[1], me.rect[2], me.rect[3], me.rect[4]
+        for _, b in ipairs(blocks) do
+          local r = b.rect
+          local beside = r[2] < y + ht - e and r[2] + r[4] > y + e
+          local stacked = r[1] < x + wd - e and r[1] + r[3] > x + e
+          if (direction == "left" and beside and r[1] + r[3] <= x + e)
+            or (direction == "right" and beside and r[1] >= x + wd - e)
+            or (direction == "up" and stacked and r[2] + r[4] <= y + e)
+            or (direction == "down" and stacked and r[2] >= y + ht - e) then
+            return true
+          end
+        end
+        return false
+      end
+    end
+  end
+  return false
+end
+
+local editors = { nvim = true, vim = true }
+
+for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
+  rex.bind("ctrl+" .. key, function(ctx)
+    if not ctx.block_id then return false end
+    local p = rex.block.call(terminal, "process", { block_id = ctx.block_id })
+    if p and p.foreground and editors[p.foreground.name] then return false end
+    if not has_neighbor(ctx.block_id, direction) then return false end
+    rex.client.queue("pane.focus", { direction = direction })
+    return true
+  end)
+  rex.bind("ctrl+shift+" .. key, "pane.resize", { direction = direction })
+end
+
+rex.bind("ctrl+shift+=", "pane.balance")
+rex.bind("cmd+shift+enter", "pane.zoom")
+rex.bind("cmd+up", "client.prompt.previous")
+rex.bind("cmd+down", "client.prompt.next")
 
 -- rexurrect (installed by mise): restore saved sessions when the server starts.
 do
