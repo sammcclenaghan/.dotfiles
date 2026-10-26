@@ -18,41 +18,12 @@ local function repo_root(dir)
   return dir
 end
 
-local function blocks(node, found)
-  found = found or {}
-  if node.block_id and node.rect then found[node.block_id] = node.rect end
-  for _, child in pairs(node) do
-    if type(child) == "table" then blocks(child, found) end
-  end
-  return found
-end
-
 local function block_labeled(label)
   for _, window in ipairs(rex.session.view{}.windows) do
     for _, layer in ipairs(window.layers) do
       for _, b in ipairs(layer.blocks) do
         if b.label == label then return b.block_id end
       end
-    end
-  end
-end
-
-local step = {
-  left  = function(r) return r[1] - 0.01, r[2] + r[4] / 2 end,
-  right = function(r) return r[1] + r[3] + 0.01, r[2] + r[4] / 2 end,
-  up    = function(r) return r[1] + r[3] / 2, r[2] - 0.01 end,
-  down  = function(r) return r[1] + r[3] / 2, r[2] + r[4] + 0.01 end,
-}
-
-local function has_neighbor(block_id, direction)
-  for _, window in ipairs(rex.session.view{}.windows) do
-    local rects = blocks(window)
-    if rects[block_id] then
-      local x, y = step[direction](rects[block_id])
-      for _, r in pairs(rects) do
-        if x > r[1] and x < r[1] + r[3] and y > r[2] and y < r[2] + r[4] then return true end
-      end
-      return false
     end
   end
 end
@@ -113,21 +84,8 @@ rex.action{
   end,
 }
 
-rex.action{
-  name  = "focus_or_send",
-  title = "Focus Pane or Send Key",
-  args  = { direction = "string", key = "string" },
-  run   = function(ctx, args)
-    if has_neighbor(ctx.block_id, args.direction) then
-      rex.client.queue("pane.focus", { direction = args.direction })
-    else
-      rex.client.queue("pane.send_key", { key = args.key })
-    end
-  end,
-}
-
 for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
-  rex.bind("ctrl+" .. key, "focus_or_send", { direction = direction, key = "ctrl+" .. key })
+  rex.bind("ctrl+" .. key, "pane.focus", { direction = direction })
   rex.bind("ctrl+shift+" .. key, "pane.resize", { direction = direction })
 end
 rex.bind("ctrl+shift+=", "pane.balance")
