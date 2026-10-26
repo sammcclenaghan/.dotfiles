@@ -44,16 +44,6 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent and keep selection" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
-for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
-  vim.keymap.set("n", "<C-" .. key .. ">", function()
-    local win = vim.api.nvim_get_current_win()
-    vim.cmd.wincmd(key)
-    if win == vim.api.nvim_get_current_win() and vim.env.REX_SESSION then
-      vim.system({ "rex", "do", "pane.focus", "direction=" .. direction })
-    end
-  end, { desc = "Move to the " .. direction .. " split or Rex pane" })
-end
-
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "J", "mzJ`z")
